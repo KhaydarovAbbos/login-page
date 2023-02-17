@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
          xmlns:menuviews="clr-namespace:login_page.UI"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:login_page"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Loaded="Window_Loaded"
         Title="MainWindow" Height="650" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
     <Grid>
         <Grid.RowDefinitions>
@@ -15,22 +16,26 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <md:PackIcon x:Name="btnExit" Kind="WindowClose"
-                         Width="30" Height="30"
-                         HorizontalAlignment="Right" MouseUp="BtnExit_MouseUp" >
-                <md:PackIcon.Style>
-                    
-                    <Style TargetType="md:PackIcon">
-                        <Setter Property="Foreground" Value="Gray"/>
 
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" Value="Red"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </md:PackIcon.Style>
-            </md:PackIcon>
+            <Button HorizontalAlignment="Right" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Margin="0 0 0 0" Click="Button_Click">
+                    <md:PackIcon x:Name="btnExit" Kind="WindowClose"
+                             
+                            Width="20" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-15 0 0 0">
+                        <md:PackIcon.Style>
+
+                            <Style TargetType="md:PackIcon">
+                                <Setter Property="Foreground" Value="Gray"/>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="Red"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </md:PackIcon.Style>
+                    </md:PackIcon>
+            </Button>
+            
         </Grid>
 
         <Grid Grid.Row="1">
@@ -40,7 +45,7 @@
             </Grid.ColumnDefinitions>
             
             
-            <Grid Grid.Column="0">
+            <Grid x:Name="gridImage" Grid.Column="0">
 
                 <Image Source="pack://application:,,,/Images/back.png" >
 
@@ -61,6 +66,23 @@
             
         </Grid>
 
-        
+
+        <Grid Grid.Row="2" Width="100" Height="100" Margin="0 0 0 70" x:Name="giff"
+              Visibility="Hidden"
+                      Panel.ZIndex="1">
+            <Grid.Background>
+                <VisualBrush>
+                    <VisualBrush.Visual>
+                        <Image gif:ImageBehavior.AnimatedSource="pack://application:,,,/Images/loading.gif"
+                           
+                   gif:ImageBehavior.AutoStart="True"
+                   gif:ImageBehavior.RepeatBehavior="1"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Grid.Background>
+        </Grid>
+
+
+
     </Grid>
 </Window>
