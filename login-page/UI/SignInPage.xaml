@@ -7,7 +7,7 @@
               xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:login_page.UI"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="450">
+             d:DesignHeight="450" d:DesignWidth="450" Loaded="UserControl_Loaded">
 
     
     <Grid Background="#FFFFFF">
@@ -41,11 +41,15 @@
                                     Kind="Account"
                                     Foreground="Gray" VerticalAlignment="Center" Margin="20,00,0,0" Width="25" Height="25"
                                 />
-                            <TextBox 
+                            <ComboBox
                                     x:Name="txtLogin"
+                                IsEditable="True"
+                                MouseDown="txtLogin_MouseDown"
+                                MouseEnter="txtLogin_MouseEnter"
+                                SelectionChanged="txtLogin_SelectionChanged"
                                     materialDesign:HintAssist.Hint="Login" Foreground="Gray"
-                                    Style="{StaticResource MaterialDesignTextBox}"
-                                    Width="200" Margin="10,0,0,0" FontSize="18" VerticalAlignment="Center"
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                    Width="200" Margin="10,-13,0,0" FontSize="15" VerticalAlignment="Center" Height="45"
                                 />
 
 
@@ -111,14 +115,14 @@
                                 </Style>
                                 <SolidColorBrush x:Key="OptionMark.MouseOver.Background" Color="#FFF3F9FF"/>
                                 <SolidColorBrush x:Key="OptionMark.MouseOver.Border" Color="#FF5593FF"/>
-                                <SolidColorBrush x:Key="OptionMark.MouseOver.Glyph" Color="Red"/>
+                                <SolidColorBrush x:Key="OptionMark.MouseOver.Glyph" Color="Green"/>
                                 <SolidColorBrush x:Key="OptionMark.Disabled.Background" Color="#FFE6E6E6"/>
                                 <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="#FFBCBCBC"/>
                                 <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="#FF707070"/>
                                 <SolidColorBrush x:Key="OptionMark.Pressed.Background" Color="#FFD9ECFF"/>
                                 <SolidColorBrush x:Key="OptionMark.Pressed.Border" Color="#FF3C77DD"/>
-                                <SolidColorBrush x:Key="OptionMark.Pressed.Glyph" Color="Red"/>
-                                <SolidColorBrush x:Key="OptionMark.Static.Glyph" Color="Red"/>
+                                <SolidColorBrush x:Key="OptionMark.Pressed.Glyph" Color="Green"/>
+                                <SolidColorBrush x:Key="OptionMark.Static.Glyph" Color="Green"/>
                             </CheckBox.Resources>
                             <CheckBox.Style>
                                 <Style TargetType="{x:Type CheckBox}">

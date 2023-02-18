@@ -77,6 +77,8 @@ namespace login_page
                 sQLiteConnection.CreateTable<DBInfo>();
                 sQLiteConnection.Close();
             }
+
+            AllCloseControls(1);
         }
     }
 }

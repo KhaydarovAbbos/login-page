@@ -29,7 +29,7 @@ namespace login_page.UI
     {
         MainWindow targetWindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
         public SignInPage signInPage { get; set; }
-
+        bool isClear = false;
         public SignUpPage()
         {
             InitializeComponent();
@@ -86,8 +86,6 @@ namespace login_page.UI
                 ConiformPassword = txtConiformPassword.Password
             };
 
-            user.Password = HashPassword.Create(user.Password);
-
             var response = await CheckUser();
 
             if (response)
@@ -98,7 +96,7 @@ namespace login_page.UI
             {
                 try
                 {
-                    DBInfo dBInfo = new DBInfo(user.Login, user.Password);
+                    DBInfo dBInfo = new DBInfo(user.Login, HashPassword.Create(user.Password));
                     var db = new SQLiteConnection(App.DatabasePath);
                     db.Insert(dBInfo);
                     db.Close();
@@ -114,10 +112,19 @@ namespace login_page.UI
                     MessageBox.Show(ex.Message, "Xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 targetWindow.AllCloseControls(1);
+                isClear = true;
             }
 
             targetWindow.RemoveEffect();
             targetWindow.giff.Visibility = Visibility.Hidden;
+
+            if (isClear)
+            {
+                txtLogin.Clear();
+                txtPassword.Clear();
+                txtConiformPassword.Clear();
+            }
+            
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)

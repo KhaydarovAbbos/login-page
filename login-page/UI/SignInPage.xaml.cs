@@ -32,6 +32,7 @@ namespace login_page.UI
     {
         MainWindow targetWindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
         public UserSignIn userSign { get; set; }
+        IList<UserSignIn> userSignIns = new List<UserSignIn>();
 
         public SignInPage()
         {
@@ -45,13 +46,32 @@ namespace login_page.UI
                 txtLogin.Text = userSign.Login;
                 txtPassword.Password = userSign.Password;
             };
+
+            userSignIns = ReadFileHelper.GetUsers();
+
+            if (userSignIns != null)
+            {
+                if (txtLogin.Items.Count > 0)
+                {
+                    txtLogin.Items.Clear();
+                }
+
+                foreach (var item in userSignIns)
+                {
+                    if (txtLogin.Items.Count == userSignIns.Count)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        txtLogin.Items.Add(item.Login);
+                    }
+                }
+            }
         }
 
         private async void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            
-
-
             if (txtLogin.Text == "")
             {
                 txtLogin.Focus();
@@ -68,10 +88,20 @@ namespace login_page.UI
 
             if (ckRememberMe.IsChecked == true)
             {
-                using (StreamWriter writer = new StreamWriter(App.FilePath))
+                UserSignIn user = new UserSignIn()
                 {
-                    writer.WriteLine(txtLogin.Text + "\t" + txtPassword.Password);
+                    Login = txtLogin.Text,
+                    Password = txtPassword.Password
+                };
+
+                if (!userSignIns.Contains(user))
+                {
+                    using (StreamWriter writer = new StreamWriter(App.FilePath, true))
+                    {
+                        writer.WriteLine(txtLogin.Text + " " + txtPassword.Password);
+                    }
                 }
+
             }
 
             var response = await CheckUser();
@@ -130,6 +160,36 @@ namespace login_page.UI
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             targetWindow.AllCloseControls(2);
+        }
+
+        private void txtLogin_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ReadFileHelper.GetUsers();
+        }
+
+        private void txtLogin_MouseEnter(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void txtLogin_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string login = txtLogin.SelectedItem.ToString();
+
+            if (userSignIns.Count > 0 && login != "")
+            {
+                var user = userSignIns.FirstOrDefault(x => x.Login.Trim() == login.Trim());
+
+                if (user != null)
+                {
+                    txtPassword.Password = user.Password;
+                }
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
