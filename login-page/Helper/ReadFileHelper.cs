@@ -4,7 +4,7 @@ using System.IO;
 
 namespace login_page.Helper
 {
-    class ReadFileHelper
+    public class ReadFileHelper
     {
         public static IList<UserSignIn> GetUsers()
         {
