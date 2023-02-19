@@ -2,9 +2,9 @@
 {
     public enum PasswordScore
     {
-        NoNumberAndChar = 1,
-        NoNumber = 3,
-        NoChar = 2,
-        Strong = 4
+        NoNumberAndChar = 0,
+        NoChar = 1,
+        NoNumber = 2,
+        Strong = 3
     }
 }

@@ -63,6 +63,7 @@ namespace login_page.UI
             }
             if (txtPassword.Password != txtConiformPassword.Password)
             {
+                txtError.Text = "Invalid coniform password";
                 txtConiformPassword.Focus();
                 return;
             }
@@ -113,13 +114,8 @@ namespace login_page.UI
                 txtLogin.Clear();
                 txtPassword.Clear();
                 txtConiformPassword.Clear();
+                txtError.Text = "";
             }
-
-        }
-
-        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
@@ -127,13 +123,11 @@ namespace login_page.UI
             if (txtPassword.Password == "")
             {
                 txtPasswordCheck.Text = "Required";
-                txtPasswordCheck.Foreground = new SolidColorBrush(Colors.Red);
                 return;
             }
             if (txtPassword.Password.Length < 8)
             {
                 txtPasswordCheck.Text = "Minimum 8 characters are required";
-                txtPasswordCheck.Foreground = new SolidColorBrush(Colors.Red);
                 return;
             }
             if (txtPassword.Password != "")
@@ -143,17 +137,14 @@ namespace login_page.UI
                 if (response == Enums.PasswordScore.NoChar)
                 {
                     txtPasswordCheck.Text = "Must contain at least 1 letter";
-                    txtPasswordCheck.Foreground = new SolidColorBrush(Colors.Red);
                 }
                 if (response == Enums.PasswordScore.NoNumber)
                 {
                     txtPasswordCheck.Text = "Must contain at least 1 digit";
-                    txtPasswordCheck.Foreground = new SolidColorBrush(Colors.Red);
                 }
                 if (response == Enums.PasswordScore.NoNumberAndChar)
                 {
                     txtPasswordCheck.Text = "Must contain at least 1 digit and 1 letter";
-                    txtPasswordCheck.Foreground = new SolidColorBrush(Colors.Red);
                 }
                 if (response == Enums.PasswordScore.Strong)
                 {

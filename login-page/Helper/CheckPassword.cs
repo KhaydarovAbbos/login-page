@@ -10,20 +10,13 @@ namespace login_page.Helper
             int score = 0;
 
             var hasNumber = new Regex(@"[0-9]+");
-            var hasUpperChar = new Regex(@"[A-Z]+");
-            var hasLowerChar = new Regex(@"[a-z]+");
-            var hasMinimum8Chars = new Regex(@".{8,}");
+            var hasLetter = new Regex(@"\p{L}");
 
-
-            if (hasMinimum8Chars.IsMatch(password))
-            {
-                score++;
-            }
             if (hasNumber.IsMatch(password))
             {
                 score++;
             }
-            if (hasUpperChar.IsMatch(password) || hasLowerChar.IsMatch(password))
+            if (hasLetter.IsMatch(password))
             {
                 score += 2;
             }

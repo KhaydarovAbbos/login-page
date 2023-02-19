@@ -33,19 +33,21 @@ namespace login_page.UI
             {
                 txtLogin.Text = userSign.Login;
                 txtPassword.Password = userSign.Password;
-            };
-
-            userSignIns = ReadFileHelper.GetUsers();
-
-            if (userSignIns != null)
+            }
+            else
             {
-                var user = userSignIns.Last();
+                userSignIns = ReadFileHelper.GetUsers();
 
-                if (user != null)
+                if (userSignIns != null)
                 {
-                    txtLogin.Text = user.Login;
-                    txtPassword.Password = user.Password;
-                    ckRememberMe.IsChecked = true;
+                    var user = userSignIns.Last();
+
+                    if (user != null)
+                    {
+                        txtLogin.Text = user.Login;
+                        txtPassword.Password = user.Password;
+                        ckRememberMe.IsChecked = true;
+                    }
                 }
             }
         }
