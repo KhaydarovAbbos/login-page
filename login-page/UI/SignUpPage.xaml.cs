@@ -3,22 +3,12 @@ using login_page.Entities.User;
 using login_page.Helper;
 using SQLite;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Markup;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using XSystem.Security.Cryptography;
 
 namespace login_page.UI
 {
@@ -56,7 +46,7 @@ namespace login_page.UI
                 txtPassword.Focus();
                 return;
             }
-            if(txtConiformPassword.Password == "")
+            if (txtConiformPassword.Password == "")
             {
                 txtConiformPassword.Focus();
                 return;
@@ -66,7 +56,7 @@ namespace login_page.UI
                 txtPassword.Focus();
                 return;
             }
-            if(txtPasswordCheck.Text != "")
+            if (txtPasswordCheck.Text != "")
             {
                 txtPassword.Focus();
                 return;
@@ -124,7 +114,7 @@ namespace login_page.UI
                 txtPassword.Clear();
                 txtConiformPassword.Clear();
             }
-            
+
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
@@ -134,13 +124,13 @@ namespace login_page.UI
 
         private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if(txtPassword.Password == "")
+            if (txtPassword.Password == "")
             {
                 txtPasswordCheck.Text = "Required";
                 txtPasswordCheck.Foreground = new SolidColorBrush(Colors.Red);
                 return;
             }
-            if(txtPassword.Password.Length < 8)
+            if (txtPassword.Password.Length < 8)
             {
                 txtPasswordCheck.Text = "Minimum 8 characters are required";
                 txtPasswordCheck.Foreground = new SolidColorBrush(Colors.Red);
@@ -155,7 +145,7 @@ namespace login_page.UI
                     txtPasswordCheck.Text = "Must contain at least 1 letter";
                     txtPasswordCheck.Foreground = new SolidColorBrush(Colors.Red);
                 }
-                if(response == Enums.PasswordScore.NoNumber)
+                if (response == Enums.PasswordScore.NoNumber)
                 {
                     txtPasswordCheck.Text = "Must contain at least 1 digit";
                     txtPasswordCheck.Foreground = new SolidColorBrush(Colors.Red);

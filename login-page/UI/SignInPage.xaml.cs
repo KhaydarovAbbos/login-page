@@ -2,26 +2,14 @@
 using login_page.Entities.User;
 using login_page.Helper;
 using SQLite;
-using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
-using XAct.Users;
-using System.Windows.Media.Effects;
 
 namespace login_page.UI
 {
@@ -51,21 +39,13 @@ namespace login_page.UI
 
             if (userSignIns != null)
             {
-                if (txtLogin.Items.Count > 0)
-                {
-                    txtLogin.Items.Clear();
-                }
+                var user = userSignIns.Last();
 
-                foreach (var item in userSignIns)
+                if (user != null)
                 {
-                    if (txtLogin.Items.Count == userSignIns.Count)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        txtLogin.Items.Add(item.Login);
-                    }
+                    txtLogin.Text = user.Login;
+                    txtPassword.Password = user.Password;
+                    ckRememberMe.IsChecked = true;
                 }
             }
         }
@@ -94,7 +74,7 @@ namespace login_page.UI
                     Password = txtPassword.Password
                 };
 
-                if (!userSignIns.Contains(user))
+                if (userSignIns.FirstOrDefault(x => x.Login == user.Login && x.Password == user.Password) == null)
                 {
                     using (StreamWriter writer = new StreamWriter(App.FilePath, true))
                     {
@@ -112,7 +92,7 @@ namespace login_page.UI
             }
             else if (response.Item1 && !response.Item2)
             {
-                txtError.Text = "Invalid  password.";
+                txtError.Text = "Invalid password.";
             }
             else
             {
@@ -142,7 +122,7 @@ namespace login_page.UI
             {
                 return (true, true);
             }
-            if(isExistLogin && !isExistPassword)
+            if (isExistLogin && !isExistPassword)
             {
                 return (true, false);
             }
@@ -162,34 +142,9 @@ namespace login_page.UI
             targetWindow.AllCloseControls(2);
         }
 
-        private void txtLogin_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ReadFileHelper.GetUsers();
-        }
-
-        private void txtLogin_MouseEnter(object sender, MouseEventArgs e)
-        {
-            
-        }
-
-        private void txtLogin_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string login = txtLogin.SelectedItem.ToString();
-
-            if (userSignIns.Count > 0 && login != "")
-            {
-                var user = userSignIns.FirstOrDefault(x => x.Login.Trim() == login.Trim());
-
-                if (user != null)
-                {
-                    txtPassword.Password = user.Password;
-                }
-            }
-        }
-
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
     }
 }

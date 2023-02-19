@@ -41,14 +41,10 @@
                                     Kind="Account"
                                     Foreground="Gray" VerticalAlignment="Center" Margin="20,00,0,0" Width="25" Height="25"
                                 />
-                            <ComboBox
+                            <TextBox
                                     x:Name="txtLogin"
-                                IsEditable="True"
-                                MouseDown="txtLogin_MouseDown"
-                                MouseEnter="txtLogin_MouseEnter"
-                                SelectionChanged="txtLogin_SelectionChanged"
                                     materialDesign:HintAssist.Hint="Login" Foreground="Gray"
-                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                     Width="200" Margin="10,-13,0,0" FontSize="15" VerticalAlignment="Center" Height="45"
                                 />
 
@@ -77,7 +73,7 @@
                                             materialDesign:TextFieldAssist.UnderlineBrush="Green"
                                             Style="{StaticResource MaterialDesignRevealPasswordBox}"
                                             x:Name="txtPassword" KeyDown="txtPassword_KeyDown"
-                                            Width="200" Margin="10,0,0,0"  FontSize="16" VerticalAlignment="Center" 
+                                            Width="200" Margin="10,0,0,0"  FontSize="15" VerticalAlignment="Center" 
                                        >
                             </PasswordBox>
                         </StackPanel>

@@ -47,15 +47,15 @@ namespace login_page
                 sign_in_view.Visibility = Visibility.Visible;
                 sign_in_view.LoadWindow();
             }
-            if(i == 2)
+            if (i == 2)
             {
                 sign_up_view.Visibility = Visibility.Visible;
                 sign_up_view.GetSignInPage(sign_in_view);
             }
-            if(i == 3)
+            if (i == 3)
             {
                 gridImage.Visibility = Visibility.Hidden;
-                
+
             }
         }
 
