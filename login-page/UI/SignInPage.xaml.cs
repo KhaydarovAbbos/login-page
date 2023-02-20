@@ -1,6 +1,7 @@
 ﻿using login_page.Entities.DbInfo;
 using login_page.Entities.User;
 using login_page.Helper;
+using MaterialDesignThemes.Wpf;
 using SQLite;
 using System.Collections.Generic;
 using System.Data;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace login_page.UI
 {
@@ -147,6 +149,48 @@ namespace login_page.UI
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (txtPassword.Password == "" )
+            {
+                txtPasswordCheck.Text = "Required";
+                TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Red);
+                return;
+            }
+            if (txtPassword.Password.Length < 8 )
+            {
+                txtPasswordCheck.Text = "Minimum 8 characters are required";
+                TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Red);
+                return;
+            }
+            if (txtPassword.Password != "" )
+            {
+                var response = CheckPassword.CheckStrength(txtPassword.Password);
+                TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Red);
+
+                if (response == Enums.PasswordScore.NoChar)
+                {
+                    txtPasswordCheck.Text = "Must contain at least 1 letter";
+                    return;
+                }
+                if (response == Enums.PasswordScore.NoNumber)
+                {
+                    txtPasswordCheck.Text = "Must contain at least 1 digit";
+                    return;
+                }
+                if (response == Enums.PasswordScore.NoNumberAndChar)
+                {
+                    txtPasswordCheck.Text = "Must contain at least 1 digit and 1 letter";
+                    return;
+                }
+                if (response == Enums.PasswordScore.Strong)
+                {
+                    txtPasswordCheck.Text = "";
+                    TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Green);
+                }
+            }
         }
     }
 }

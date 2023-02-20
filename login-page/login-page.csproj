@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="Images\back.png" />
     <None Remove="Images\loading.gif" />
+    <None Remove="Images\succes.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +29,7 @@
     <Resource Include="Images\loading.gif">
       <CopyToOutputDirectory></CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\succes.png" />
   </ItemGroup>
 
 </Project>

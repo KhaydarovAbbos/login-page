@@ -1,6 +1,7 @@
 ﻿using login_page.Entities.DbInfo;
 using login_page.Entities.User;
 using login_page.Helper;
+using MaterialDesignThemes.Wpf;
 using SQLite;
 using System;
 using System.Linq;
@@ -111,44 +112,65 @@ namespace login_page.UI
 
             if (isClear)
             {
-                txtLogin.Clear();
-                txtPassword.Clear();
-                txtConiformPassword.Clear();
+                txtLogin.Text = null;
+                txtPassword.Password = null;
+                txtConiformPassword.Password = null;
                 txtError.Text = "";
+                isClear= false;
             }
         }
 
         private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (txtPassword.Password == "")
+            if (txtPassword.Password == "" && isClear == false)
             {
                 txtPasswordCheck.Text = "Required";
+                TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Red);
                 return;
             }
-            if (txtPassword.Password.Length < 8)
+            if (txtPassword.Password.Length < 8 && isClear == false)
             {
                 txtPasswordCheck.Text = "Minimum 8 characters are required";
+                TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Red);
                 return;
             }
-            if (txtPassword.Password != "")
+            if (txtPassword.Password != "" && isClear == false)
             {
                 var response = CheckPassword.CheckStrength(txtPassword.Password);
+                TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Red);
 
                 if (response == Enums.PasswordScore.NoChar)
                 {
                     txtPasswordCheck.Text = "Must contain at least 1 letter";
+                    return;
                 }
                 if (response == Enums.PasswordScore.NoNumber)
                 {
                     txtPasswordCheck.Text = "Must contain at least 1 digit";
+                    return;
                 }
                 if (response == Enums.PasswordScore.NoNumberAndChar)
                 {
                     txtPasswordCheck.Text = "Must contain at least 1 digit and 1 letter";
+                    return;
                 }
                 if (response == Enums.PasswordScore.Strong)
                 {
                     txtPasswordCheck.Text = "";
+                    TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Green);
+
+                    if (txtPassword.Password != txtConiformPassword.Password && txtConiformPassword.Password != "")
+                    {
+                        txtConiformPasswordCheck.Text = "Invalid coniform password";
+                        TextFieldAssist.SetUnderlineBrush(txtConiformPassword, Brushes.Red);
+                        txtConiformPasswordSucces.Visibility = Visibility.Hidden;
+                    }
+                    if(txtPassword.Password == txtConiformPassword.Password)
+                    {
+                        txtConiformPasswordCheck.Text = "";
+                        TextFieldAssist.SetUnderlineBrush(txtConiformPassword, Brushes.Green);
+                        txtConiformPasswordSucces.Visibility = Visibility.Visible;
+                    }
                 }
             }
         }
@@ -172,6 +194,56 @@ namespace login_page.UI
             else
             {
                 return false;
+            }
+        }
+
+        private void txtConiformPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            txtConiformPasswordSucces.Visibility = Visibility.Hidden;
+            if (txtConiformPassword.Password == "" && isClear == false )
+            {
+                txtConiformPasswordCheck.Text = "Required";
+                TextFieldAssist.SetUnderlineBrush(txtConiformPassword, Brushes.Red);
+                return;
+            }
+            if (txtConiformPassword.Password.Length < 8 && isClear == false )
+            {
+                txtConiformPasswordCheck.Text = "Minimum 8 characters are required";
+                TextFieldAssist.SetUnderlineBrush(txtConiformPassword, Brushes.Red);
+                return;
+            }
+            if (txtConiformPassword.Password != "" && isClear == false)
+            {
+                var response = CheckPassword.CheckStrength(txtConiformPassword.Password);
+                TextFieldAssist.SetUnderlineBrush(txtConiformPassword, Brushes.Red);
+
+                if (response == Enums.PasswordScore.NoChar)
+                {
+                    txtConiformPasswordCheck.Text = "Must contain at least 1 letter";
+                    return;
+                }
+                if (response == Enums.PasswordScore.NoNumber)
+                {
+                    txtConiformPasswordCheck.Text = "Must contain at least 1 digit";
+                    return;
+                }
+                if (response == Enums.PasswordScore.NoNumberAndChar)
+                {
+                    txtConiformPasswordCheck.Text = "Must contain at least 1 digit and 1 letter";
+                    return;
+                }
+                if (response == Enums.PasswordScore.Strong)
+                {
+                    txtConiformPasswordCheck.Text = "";
+                    TextFieldAssist.SetUnderlineBrush(txtConiformPassword, Brushes.Green);
+                    txtConiformPasswordSucces.Visibility = Visibility.Visible;
+                }
+                if(txtConiformPassword.Password != txtPassword.Password)
+                {
+                    txtConiformPasswordCheck.Text = "Invalid coniform password";
+                    TextFieldAssist.SetUnderlineBrush(txtConiformPassword, Brushes.Red);
+                    txtConiformPasswordSucces.Visibility = Visibility.Hidden;
+                }
             }
         }
     }

@@ -92,7 +92,7 @@
                                 materialDesign:ButtonAssist.CornerRadius="0"
                                 material:ValidationAssist.HorizontalAlignment="Center"
                                 materialDesign:HintAssist.Foreground="Green"
-                                Foreground="Gray"
+                                Foreground="Gray" PasswordChanged="txtPassword_PasswordChanged"
                                 materialDesign:TextFieldAssist.UnderlineBrush="Green"
                                 Style="{StaticResource MaterialDesignRevealPasswordBox}"
                                 x:Name="txtPassword" 
@@ -101,10 +101,20 @@
                                 FontSize="15" 
                                 VerticalAlignment="Center" 
                             />
+                            
                         </StackPanel>
                     </Grid>
+                        
                 </Border>
-                
+                <StackPanel>
+                    <TextBlock x:Name="txtPasswordCheck"  
+                        HorizontalAlignment="Center" 
+                        Margin="0 0 0 0" 
+                        Foreground="Red">
+
+                    </TextBlock>
+                </StackPanel>
+
                 <Grid Height="20" 
                     HorizontalAlignment="Center" 
                     Margin="-150 10 0 0" 

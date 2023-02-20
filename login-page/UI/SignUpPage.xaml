@@ -138,7 +138,7 @@
                                 materialDesign:ButtonAssist.CornerRadius="0"
                                 material:ValidationAssist.HorizontalAlignment="Center"
                                 materialDesign:HintAssist.Foreground="Green"
-                                Foreground="Gray"
+                                Foreground="Gray" PasswordChanged="txtConiformPassword_PasswordChanged"
                                 materialDesign:TextFieldAssist.UnderlineBrush="Green"
                                 Style="{StaticResource MaterialDesignRevealPasswordBox}"
                                 x:Name="txtConiformPassword" 
@@ -148,9 +148,30 @@
                                 VerticalAlignment="Center" 
                             />
 
+                            <materialDesign:PackIcon  
+                                x:Name="txtConiformPasswordSucces"
+                                Kind="Check" 
+                                Visibility="Hidden"
+                                Foreground="Green" 
+                                VerticalAlignment="Center" 
+                                Margin="10,0,0,0" 
+                                Width="25" 
+                                Height="25"
+                            />
+                            
                         </StackPanel>
                     </Grid>
                 </Border>
+
+                <StackPanel>
+                    <TextBlock x:Name="txtConiformPasswordCheck"  
+                        HorizontalAlignment="Center" 
+                        Margin="0 0 0 0" 
+                        Foreground="Red">
+
+                    </TextBlock>
+                </StackPanel>
+
 
             </StackPanel>
 
