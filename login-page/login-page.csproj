@@ -9,8 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\add.png" />
     <None Remove="Images\back.png" />
+    <None Remove="Images\delete.png" />
     <None Remove="Images\loading.gif" />
+    <None Remove="Images\pencil.png" />
     <None Remove="Images\succes.png" />
   </ItemGroup>
 
@@ -18,6 +21,7 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
      <PackageReference Include="MaterialDesignThemes" Version="4.7.0-ci307" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+    <PackageReference Include="MySql.Data" Version="8.0.32.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
@@ -25,10 +29,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\add.png" />
     <Resource Include="Images\back.png" />
+    <Resource Include="Images\delete.png" />
     <Resource Include="Images\loading.gif">
       <CopyToOutputDirectory></CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\pencil.png" />
     <Resource Include="Images\succes.png" />
   </ItemGroup>
 

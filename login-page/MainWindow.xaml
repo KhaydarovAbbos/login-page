@@ -8,7 +8,7 @@
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:login_page"
         mc:Ignorable="d" Loaded="Window_Loaded"
-        Title="MainWindow" Height="720" Width="890" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
+         Height="730" Width="1320" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Icon="{x:Null}">
     <Window.Background>
         <LinearGradientBrush EndPoint="0,1" StartPoint="1, 1" >
             <GradientStop Color="#B651C2" Offset="0"/>
@@ -17,65 +17,45 @@
     </Window.Background>
 
     <Grid>
-    
-    
-        <Grid Grid.Row="0" Margin="00 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="851*"/>
+        </Grid.RowDefinitions>
 
-            <Button HorizontalAlignment="Right" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Margin="0 0 0 0" Click="Button_Click">
-                    <md:PackIcon x:Name="btnExit" Kind="WindowClose"
+
+        <Grid Grid.Row="0" Margin="0 0 0 0" >
+
+            <Button HorizontalAlignment="Right" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Margin="0 0 0 0" Click="Button_Click" Visibility="Hidden">
+                <md:PackIcon x:Name="btnExit" Kind="WindowClose"
                              
                             Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-15 0 0 0">
-                        <md:PackIcon.Style>
+                    <md:PackIcon.Style>
 
-                            <Style TargetType="md:PackIcon">
-                                <Setter Property="Foreground" Value="White"/>
+                        <Style TargetType="md:PackIcon">
+                            <Setter Property="Foreground" Value="White"/>
 
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Foreground" Value="Red"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </md:PackIcon.Style>
-                    </md:PackIcon>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </md:PackIcon.Style>
+                </md:PackIcon>
             </Button>
-            
+
         </Grid>
-    
-    
-        <Grid Height="650" Width="780">
 
-            <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="{x:Null}" BorderThickness="0" CornerRadius="10">
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="300"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+
+        <Grid Margin="0 0 0 0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <DockPanel  Grid.ColumnSpan="2">
+                <menuviews:SignInPage x:Name="sign_in_view" Visibility="Hidden"/>
+            </DockPanel>
+            <DockPanel  Grid.ColumnSpan="2">
+                <menuviews:SignUpPage x:Name="sign_up_view" Visibility="Hidden"/>
+            </DockPanel>
             
-            
-                    <Grid x:Name="gridImage" Grid.Column="0" >
-
-                        <Image Source="pack://application:,,,/Images/back.png" >
-
-                        </Image>
-
-                    </Grid>
-
-
-                    <Grid Grid.Column="1" Margin="0 0 10 0">
-                        <DockPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-                            <menuviews:SignInPage x:Name="sign_in_view" Visibility="Hidden"/>
-                        </DockPanel>
-                        <DockPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-                            <menuviews:SignUpPage x:Name="sign_up_view" Visibility="Hidden"/>
-                        </DockPanel>
-                    </Grid>
-            
-            
-                </Grid>
-            
-            </Border>
-        
 
 
             <Grid Grid.Row="2" Width="100" Height="100" Margin="0 0 0 70" x:Name="giff"
@@ -96,5 +76,9 @@
 
 
         </Grid>
+
+        <DockPanel Grid.Row="1">
+            <menuviews:MainView x:Name="main_view" Visibility="Hidden"/>
+        </DockPanel>
     </Grid>
 </Window>

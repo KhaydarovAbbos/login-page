@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="login_page.UI.ShopView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:model="clr-namespace:login_page.Entities.Shops"
+             xmlns:local="clr-namespace:login_page.UI"
+             xmlns:wpfapp1="clr-namespace:login_page.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="730" d:DesignWidth="1320">
+
+    <Grid Background="#F2F2F2">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            
+        </Grid.RowDefinitions>
+
+        <Border CornerRadius="0 0 5 5" Background="#FFFFFF">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="1"/>
+            </Border.Effect>
+
+            <TextBlock Text="Мои магазины" VerticalAlignment="Center" Margin="20 0 0 0" FontSize="18" FontWeight="Bold">
+                
+            </TextBlock>
+            
+        </Border>
+
+
+        <Grid Grid.Row="1" Margin="0 20 0 10">
+
+            <WrapPanel Margin=" 20 10 20 10" x:Name="panel" >
+
+            </WrapPanel>
+                
+        </Grid>
+    </Grid>
+</UserControl>

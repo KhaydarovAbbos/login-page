@@ -1,10 +1,12 @@
-﻿using login_page.Entities.DbInfo;
-using login_page.Entities.User;
+﻿using login_page.Entities.User;
 using login_page.Helper;
 using MaterialDesignThemes.Wpf;
+using MySql.Data.MySqlClient;
 using SQLite;
 using System;
+using System.Data;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -88,10 +90,14 @@ namespace login_page.UI
             {
                 try
                 {
-                    DBInfo dBInfo = new DBInfo(user.Login, HashPassword.Create(user.Password));
-                    var db = new SQLiteConnection(App.DatabasePath);
-                    db.Insert(dBInfo);
-                    db.Close();
+                    DB dB = new DB();
+                    
+                    dB.OpenConnection();
+
+                    MySqlCommand command = new MySqlCommand($"insert into Users(Login, Password) values('{user.Login}', '{HashPassword.Create(user.Password)}')", dB.GetConnection());
+                    command.ExecuteNonQuery();
+
+                    dB.CloseConnection();
 
                     signInPage.userSign = new UserSignIn
                     {
@@ -178,14 +184,25 @@ namespace login_page.UI
         private async Task<bool> CheckUser()
         {
             await Task.Delay(1000);
-            DBInfo userLogin = new DBInfo();
+            User userLogin = new User();
+            DB dB = new DB();
+            DataTable dtUser = new DataTable();
+            MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
+            
 
-            using (SQLiteConnection connect = new SQLiteConnection(App.DatabasePath))
-            {
-                userLogin = connect.FindWithQuery<DBInfo>("SELECT * FROM DBInfo WHERE Login = @Login", txtLogin.Text);
-            }
+            dB.OpenConnection();
 
-            bool isExistLogin = userLogin != null;
+            MySqlCommand command = new MySqlCommand($"SELECT Id FROM Users WHERE Login = '{txtLogin.Text}'", dB.GetConnection());
+
+            mySqlDataAdapter.SelectCommand = command;
+            mySqlDataAdapter.Fill(dtUser);
+
+            dB.CloseConnection();
+
+            if (dtUser != null && dtUser.Rows.Count > 0)
+                userLogin.Id = int.Parse(dtUser.Rows[0]["Id"].ToString());
+
+            bool isExistLogin = userLogin != null && userLogin.Id != 0;
 
             if (isExistLogin)
             {
@@ -245,6 +262,12 @@ namespace login_page.UI
                     txtConiformPasswordSucces.Visibility = Visibility.Hidden;
                 }
             }
+        }
+
+        private void ValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"[^a-zA-Z0-9]");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

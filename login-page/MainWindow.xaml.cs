@@ -1,5 +1,4 @@
-﻿using login_page.Entities.DbInfo;
-using SQLite;
+﻿using SQLite;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -41,6 +40,7 @@ namespace login_page
 
             sign_in_view.Visibility = Visibility.Hidden;
             sign_up_view.Visibility = Visibility.Hidden;
+            main_view.Visibility = Visibility.Hidden;
 
             if (i == 1)
             {
@@ -52,11 +52,11 @@ namespace login_page
                 sign_up_view.Visibility = Visibility.Visible;
                 sign_up_view.GetSignInPage(sign_in_view);
             }
-            if (i == 3)
+            if( i == 3)
             {
-                gridImage.Visibility = Visibility.Hidden;
-
+                main_view.Visibility= Visibility.Visible;
             }
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -66,18 +66,6 @@ namespace login_page
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (File.Exists(App.DatabasePath))
-            {
-
-            }
-            else
-            {
-                SQLiteConnection sQLiteConnection = new SQLiteConnection(App.DatabasePath);
-
-                sQLiteConnection.CreateTable<DBInfo>();
-                sQLiteConnection.Close();
-            }
-
             AllCloseControls(1);
         }
     }

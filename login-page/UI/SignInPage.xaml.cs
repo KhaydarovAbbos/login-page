@@ -1,7 +1,7 @@
-﻿using login_page.Entities.DbInfo;
-using login_page.Entities.User;
+﻿using login_page.Entities.User;
 using login_page.Helper;
 using MaterialDesignThemes.Wpf;
+using MySql.Data.MySqlClient;
 using SQLite;
 using System.Collections.Generic;
 using System.Data;
@@ -40,7 +40,7 @@ namespace login_page.UI
             {
                 userSignIns = ReadFileHelper.GetUsers();
 
-                if (userSignIns != null)
+                if (userSignIns != null && userSignIns.Count > 0)
                 {
                     var user = userSignIns.Last();
 
@@ -109,36 +109,61 @@ namespace login_page.UI
 
         private async Task<(bool, bool)> CheckUser()
         {
-            await Task.Delay(1000);
-            DBInfo userLogin = new DBInfo();
-            DBInfo userPassword = new DBInfo();
+            try
+            {
+                await Task.Delay(1000);
+                User userLogin = new User();
+                User userPassword = new User();
 
-            using (SQLiteConnection connect = new SQLiteConnection(App.DatabasePath))
-            {
-                userLogin = connect.FindWithQuery<DBInfo>("SELECT * FROM DBInfo WHERE Login = @Login", txtLogin.Text);
-                userPassword = connect.FindWithQuery<DBInfo>("SELECT * FROM DBInfo WHERE Password = @Password", HashPassword.Create(txtPassword.Password));
-            }
+                DB dB = new DB();
+                DataTable dtLogin = new DataTable();
+                DataTable dtPassword = new DataTable();
+                MySqlDataAdapter mySqlDataAdapterLogin = new MySqlDataAdapter();
+                MySqlDataAdapter mySqlDataAdapterPassword = new MySqlDataAdapter();
 
-            bool isExistLogin = userLogin != null;
-            bool isExistPassword = userPassword != null;
 
-            if (isExistLogin && isExistPassword)
-            {
-                return (true, true);
+                dB.OpenConnection();
+
+                MySqlCommand cmdLogin = new MySqlCommand($"SELECT Id FROM Users WHERE Login = '{txtLogin.Text}'", dB.GetConnection());
+                MySqlCommand cmdPassword = new MySqlCommand($"SELECT Id FROM Users WHERE Password = '{HashPassword.Create(txtPassword.Password)}'", dB.GetConnection());
+
+
+                mySqlDataAdapterLogin.SelectCommand = cmdLogin;
+                mySqlDataAdapterLogin.Fill(dtLogin);
+
+                mySqlDataAdapterPassword.SelectCommand = cmdPassword;
+                mySqlDataAdapterPassword.Fill(dtPassword);
+
+                if (dtLogin != null)
+                    userLogin.Id = int.Parse(dtLogin.Rows[0]["Id"].ToString());
+
+                if (dtPassword != null)
+                    userPassword.Id = int.Parse(dtPassword.Rows[0]["Id"].ToString());
+
+                dB.CloseConnection();
+
+                bool isExistLogin = userLogin != null || userLogin.Id != 0;
+                bool isExistPassword = userPassword != null || userPassword.Id != 0;
+
+                if (isExistLogin && isExistPassword)
+                {
+                    return (true, true);
+                }
+                if (isExistLogin && !isExistPassword)
+                {
+                    return (true, false);
+                }
+                else
+                {
+                    return (false, false);
+                }
             }
-            if (isExistLogin && !isExistPassword)
+            catch (System.Exception ex)
             {
-                return (true, false);
-            }
-            else
-            {
+                MessageBox.Show(ex.Message, "Xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
                 return (false, false);
             }
-        }
-
-        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
-        {
-
+            
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
