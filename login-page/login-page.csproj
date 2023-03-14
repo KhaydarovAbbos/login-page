@@ -12,6 +12,7 @@
     <None Remove="Images\add.png" />
     <None Remove="Images\back.png" />
     <None Remove="Images\delete.png" />
+    <None Remove="Images\exit.png" />
     <None Remove="Images\loading.gif" />
     <None Remove="Images\pencil.png" />
     <None Remove="Images\succes.png" />
@@ -32,6 +33,7 @@
     <Resource Include="Images\add.png" />
     <Resource Include="Images\back.png" />
     <Resource Include="Images\delete.png" />
+    <Resource Include="Images\exit.png" />
     <Resource Include="Images\loading.gif">
       <CopyToOutputDirectory></CopyToOutputDirectory>
     </Resource>

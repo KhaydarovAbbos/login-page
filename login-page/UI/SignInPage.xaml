@@ -72,7 +72,7 @@
                             />
                                 <TextBox
                                 x:Name="txtLogin"
-                                materialDesign:HintAssist.Hint="Login" Foreground="Gray"
+                                materialDesign:HintAssist.Hint="Login" Foreground="black"
                                 Style="{StaticResource MaterialDesignTextBox}"
                                 Width="200" 
                                 Margin="10,0,0,0" 
@@ -106,7 +106,7 @@
                                 materialDesign:ButtonAssist.CornerRadius="0"
                                 material:ValidationAssist.HorizontalAlignment="Center"
                                 materialDesign:HintAssist.Foreground="Green"
-                                Foreground="Gray" PasswordChanged="txtPassword_PasswordChanged"
+                                Foreground="black" PasswordChanged="txtPassword_PasswordChanged"
                                 materialDesign:TextFieldAssist.UnderlineBrush="Green"
                                 Style="{StaticResource MaterialDesignRevealPasswordBox}"
                                 x:Name="txtPassword" 

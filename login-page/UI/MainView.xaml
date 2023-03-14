@@ -32,7 +32,7 @@
 
 
                 <ListView Width="199" >
-                    <ListViewItem x:Name="shops" Foreground="Black" TextBlock.TextAlignment="Center" BorderThickness="1" BorderBrush="Gray" Margin="0 0 0 0" MouseUp="shops_MouseUp">
+                    <ListViewItem x:Name="shops" Foreground="Black" TextBlock.TextAlignment="Center" BorderThickness="1" BorderBrush="Gray" Margin="0 0 0 0" MouseUp="shops_MouseUp" Selected="shops_Selected">
                         <ListViewItem.Content>
 
                             <StackPanel Orientation="Horizontal">
@@ -81,6 +81,10 @@
         <DockPanel Grid.Column="2" Grid.Row="0" >
             <menuviews:ShopView x:Name="shop_view" Visibility="Hidden" Height="Auto" Width="Auto"/>
         </DockPanel>
-        
+
+        <DockPanel Grid.Column="2" Grid.Row="0" >
+            <menuviews:StoreView x:Name="store_view" Visibility="Hidden" Height="Auto" Width="Auto"/>
+        </DockPanel>
+
     </Grid>
 </UserControl>

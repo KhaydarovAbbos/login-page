@@ -38,17 +38,30 @@ namespace login_page.UI
         public void AllCloseControls(int i)
         {
             shop_view.Visibility = Visibility.Hidden;
+            store_view.Visibility = Visibility.Hidden;
+
 
             if (i == 1)
             {
                 shop_view.Visibility = Visibility.Visible;
+                shop_view.GetMainView(this);
                 shop_view.WindowLoad();
+            }
+            if (i == 2)
+            {
+                store_view.Visibility = Visibility.Visible;
+                store_view.GetMainView(this);
             }
         }
 
         private void settings_MouseUp(object sender, MouseButtonEventArgs e)
         {
             AllCloseControls(2);
+        }
+
+        private void shops_Selected(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
