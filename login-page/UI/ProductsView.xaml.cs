@@ -12,40 +12,34 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace login_page.UI
 {
     /// <summary>
-    /// Логика взаимодействия для StoreView.xaml
+    /// Логика взаимодействия для ProductsView.xaml
     /// </summary>
-    public partial class StoreView : UserControl
+    public partial class ProductsView : UserControl
     {
-        MainView MainView { get; set; }
-        public static string StoreName = "";
+        StoreMainView StoremainView;
 
-        public StoreView()
+        public static string name = "";
+
+        public ProductsView()
         {
             InitializeComponent();
-
         }
 
-        public void GetMainView(MainView mainView)
+        public void GetMainView(StoreMainView storeMainView)
         {
-            MainView = mainView;
+            StoremainView = storeMainView;
 
-            txtName.Text = StoreName;
+            txtName.Text = name;
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            MainView.AllCloseControls(1);
-        }
-
-        private void addBtn_Click(object sender, RoutedEventArgs e)
-        {
-            ProductCategoryView.StoreName = $"{txtName.Text} > ";
-
-            MainView.AllCloseControls(3);
+            StoremainView.AllCloseControls(2);
         }
     }
 }

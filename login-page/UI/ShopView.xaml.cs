@@ -170,9 +170,6 @@ namespace login_page.UI
 
         private void TextBlock_Click(object sender, MouseEventArgs e)
         {
-            TextBlock textBlock = sender as TextBlock;
-
-            StoreView.StoreName = textBlock.Text;
             MainView.AllCloseControls(2);
         }
 

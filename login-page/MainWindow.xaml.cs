@@ -41,6 +41,7 @@ namespace login_page
             sign_in_view.Visibility = Visibility.Hidden;
             sign_up_view.Visibility = Visibility.Hidden;
             main_view.Visibility = Visibility.Hidden;
+            store_main_view.Visibility = Visibility.Hidden;
 
             if (i == 1)
             {
@@ -55,6 +56,12 @@ namespace login_page
             if( i == 3)
             {
                 main_view.Visibility= Visibility.Visible;
+                main_view.GetMainWindow(this);
+            }
+            if(i == 4)
+            {
+                store_main_view.Visibility = Visibility.Visible;
+                store_main_view.GetMainWindow(this);
             }
             
         }

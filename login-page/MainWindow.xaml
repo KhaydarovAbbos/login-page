@@ -80,5 +80,9 @@
         <DockPanel Grid.Row="1">
             <menuviews:MainView x:Name="main_view" Visibility="Hidden"/>
         </DockPanel>
+
+        <DockPanel Grid.Row="1">
+            <menuviews:StoreMainView x:Name="store_main_view" Visibility="Hidden"/>
+        </DockPanel>
     </Grid>
 </Window>

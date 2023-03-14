@@ -35,21 +35,6 @@
 
                 </StackPanel>
                 
-                
-                
-
-                <Button x:Name="btnExit" Width="150" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Background="#FFFFFF" BorderBrush="White" Click="btnExit_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="../Images/exit.png">
-
-                        </Image>
-
-                        <TextBlock Text="Чиқиш" Margin="20 0 0 0" FontSize="18">
-
-                        </TextBlock>
-
-                    </StackPanel>
-                </Button>
             </Grid>
         </Border>
 

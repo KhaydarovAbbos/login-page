@@ -27,9 +27,7 @@
                     <TextBlock x:Name="txtName" VerticalAlignment="Center" Margin="20 0 0 0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left">
 
                     </TextBlock>
-                    <TextBlock Text="Подкатегорий"  VerticalAlignment="Center" Margin="0 0 0 0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left">
-
-                    </TextBlock>
+                    
                 
                     
                 </StackPanel>
@@ -53,7 +51,14 @@
 
         <Grid Grid.Row="1" Margin="0 20 0 10">
 
-            <WrapPanel Margin=" 20 10 20 10" x:Name="panel" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Список подкатегорий" FontSize="18" FontWeight="Bold" Margin="20 0 0 0"/>
+
+            <WrapPanel Grid.Row="1" Margin=" 20 10 20 10" x:Name="panel" >
 
             </WrapPanel>
 

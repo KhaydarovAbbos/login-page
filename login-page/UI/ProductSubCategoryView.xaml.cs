@@ -23,7 +23,7 @@ namespace login_page.UI
     /// </summary>
     public partial class ProductSubCategoryView : UserControl
     {
-        MainView Mainview;
+        StoreMainView StoremainView;
 
         public static string name = "";
 
@@ -32,9 +32,9 @@ namespace login_page.UI
             InitializeComponent();
         }
 
-        public void GetMainView(MainView mainView)
+        public void GetMainView(StoreMainView storeMainView)
         {
-            Mainview = mainView;
+            StoremainView = storeMainView;
 
             txtName.Text = name;
         }
@@ -178,7 +178,7 @@ namespace login_page.UI
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            Mainview.AllCloseControls(3);
+            StoremainView.AllCloseControls(1);
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -237,7 +237,11 @@ namespace login_page.UI
         {
             TextBlock textBlock = sender as TextBlock;
 
-            
+            string name = textBlock.Text;
+
+            ProductsView.name = name;
+
+            StoremainView.AllCloseControls(3);
 
 
         }

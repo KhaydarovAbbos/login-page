@@ -9,9 +9,15 @@ namespace login_page.UI
     /// </summary>
     public partial class MainView : UserControl
     {
+        MainWindow Mainwindow;
         public MainView()
         {
             InitializeComponent();
+        }
+
+        public void GetMainWindow(MainWindow mainWindow)
+        {
+            Mainwindow = mainWindow;
         }
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)
@@ -36,10 +42,12 @@ namespace login_page.UI
         public void AllCloseControls(int i)
         {
             shop_view.Visibility = Visibility.Hidden;
-            store_view.Visibility = Visibility.Hidden;
-            productcategory_view.Visibility = Visibility.Hidden;
-            productSubCategory_view.Visibility = Visibility.Hidden;
+            store_main_view.Visibility = Visibility.Hidden;
 
+            if (i == -1)
+            {
+                this.Visibility = Visibility.Visible;
+            }
             if (i == 1)
             {
                 shop_view.Visibility = Visibility.Visible;
@@ -48,26 +56,14 @@ namespace login_page.UI
             }
             if (i == 2)
             {
-                store_view.Visibility = Visibility.Visible;
-                store_view.GetMainView(this);
+                Mainwindow.AllCloseControls(4);
             }
-            if (i == 3)
-            {
-                productcategory_view.Visibility = Visibility.Visible;
-                productcategory_view.GetMainView(this);
-                productcategory_view.WindowLoad();
-            }
-            if (i == 4)
-            {
-                productSubCategory_view.Visibility = Visibility.Visible;
-                productSubCategory_view.GetMainView(this);
-                productSubCategory_view.WindowLoad();
-            }
+
         }
 
         private void settings_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            AllCloseControls(5);
+            AllCloseControls(-1);
         }
 
         private void shops_Selected(object sender, RoutedEventArgs e)
