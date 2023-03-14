@@ -1,5 +1,7 @@
 ﻿using login_page.Entities.User;
 using login_page.Helper;
+using login_page.Service.Interfaces;
+using login_page.Service.Services;
 using MaterialDesignThemes.Wpf;
 using MySql.Data.MySqlClient;
 using SQLite;

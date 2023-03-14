@@ -25,8 +25,6 @@ namespace login_page.UI
             {
                 MainGrid.ColumnDefinitions[0].Width = new GridLength(200, GridUnitType.Pixel);
                 MainGrid.ColumnDefinitions[1].Width = new GridLength(1120, GridUnitType.Pixel);
-
-                
             }
         }
 
@@ -39,7 +37,8 @@ namespace login_page.UI
         {
             shop_view.Visibility = Visibility.Hidden;
             store_view.Visibility = Visibility.Hidden;
-
+            productcategory_view.Visibility = Visibility.Hidden;
+            productSubCategory_view.Visibility = Visibility.Hidden;
 
             if (i == 1)
             {
@@ -52,11 +51,23 @@ namespace login_page.UI
                 store_view.Visibility = Visibility.Visible;
                 store_view.GetMainView(this);
             }
+            if (i == 3)
+            {
+                productcategory_view.Visibility = Visibility.Visible;
+                productcategory_view.GetMainView(this);
+                productcategory_view.WindowLoad();
+            }
+            if (i == 4)
+            {
+                productSubCategory_view.Visibility = Visibility.Visible;
+                productSubCategory_view.GetMainView(this);
+                productSubCategory_view.WindowLoad();
+            }
         }
 
         private void settings_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            AllCloseControls(2);
+            AllCloseControls(5);
         }
 
         private void shops_Selected(object sender, RoutedEventArgs e)

@@ -10,7 +10,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="730" d:DesignWidth="1320">
 
-    <Grid Background="#F2F2F2">
+    <Grid Background="#E5F6FF">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

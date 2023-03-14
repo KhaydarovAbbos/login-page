@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="login_page.UI.StoreView"
+﻿<UserControl x:Class="login_page.UI.ProductSubCategoryView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -23,20 +23,28 @@
 
             <Grid>
 
-                <TextBlock x:Name="txtName" VerticalAlignment="Center" Margin="20 0 0 0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="txtName" VerticalAlignment="Center" Margin="20 0 0 0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left">
 
-                </TextBlock>
+                    </TextBlock>
+                    <TextBlock Text="Подкатегорий"  VerticalAlignment="Center" Margin="0 0 0 0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left">
+
+                    </TextBlock>
+                
+                    
+                </StackPanel>
+                
 
                 <Button x:Name="btnExit" Width="150" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Background="#FFFFFF" BorderBrush="White" Click="btnExit_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="../Images/exit.png">
-                            
+
                         </Image>
 
                         <TextBlock Text="Чиқиш" Margin="20 0 0 0" FontSize="18">
-                            
+
                         </TextBlock>
-                        
+
                     </StackPanel>
                 </Button>
             </Grid>
@@ -45,18 +53,10 @@
 
         <Grid Grid.Row="1" Margin="0 20 0 10">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="*"/>
-                
-            </Grid.RowDefinitions>
+            <WrapPanel Margin=" 20 10 20 10" x:Name="panel" >
 
-            <Grid Grid.Row="0">
-                <Button x:Name="addBtn" Background="#FFF" BorderBrush="#FFF" Width="150" HorizontalAlignment="Left" Margin="20 0 0 0" Content="Создать товар" FontSize="16" Click="addBtn_Click">
-                    
-                </Button>
-            </Grid>
-            
+            </WrapPanel>
+
         </Grid>
     </Grid>
 </UserControl>

@@ -8,11 +8,11 @@ namespace login_page.UI
     /// <summary>
     /// Логика взаимодействия для EditShop.xaml
     /// </summary>
-    public partial class EditShop : Window
+    public partial class EditShopWindow : Window
     {
         ShopView shopView { get; set; }
         int ShopId;
-        public EditShop()
+        public EditShopWindow()
         {
             InitializeComponent();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using login_page.Service.Interfaces;
+using System;
 using System.IO;
 using System.Windows;
 
@@ -11,5 +12,8 @@ namespace login_page
     {
         public static string FilePath = Path.Combine(Environment.CurrentDirectory, @"Data\", "RememberData.txt");
 
+        public App()
+        {
+        }
     }
 }

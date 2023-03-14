@@ -40,5 +40,12 @@ namespace login_page.UI
         {
             MainView.AllCloseControls(1);
         }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProductCategoryView.StoreName = $"{txtName.Text} > ";
+
+            MainView.AllCloseControls(3);
+        }
     }
 }
