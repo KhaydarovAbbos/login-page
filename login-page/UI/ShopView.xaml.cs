@@ -45,6 +45,32 @@ namespace login_page.UI
 
             dB.CloseConnection();
 
+            Border borderAdd = new Border
+            {
+                Background = Brushes.White,
+                Width = 250,
+                Height = 150,
+                BorderBrush = Brushes.Gray,
+                BorderThickness = new Thickness(1),
+                Margin = new Thickness(10, 10, 0, 0),
+                CornerRadius = new CornerRadius(10),
+            };
+
+            MyButton buttonAdd = new MyButton
+            {
+                Background = Brushes.Transparent,
+                BorderBrush = Brushes.Transparent,
+                Content = "+ Добавить",
+                FontWeight = FontWeights.Bold,
+                FontSize = 25
+            };
+            buttonAdd.Click += new RoutedEventHandler(btnAdd_Click);
+
+            borderAdd.Child = buttonAdd;
+
+            panel.Children.Add(borderAdd);
+
+
             for (int i = 0; i < dtShops.Rows.Count; i++)
             {
 

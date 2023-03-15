@@ -23,7 +23,7 @@
                 <DropShadowEffect ShadowDepth="1"/>
             </Border.Effect>
 
-            <TextBlock Text="Мои магазины" VerticalAlignment="Center" Margin="20 0 0 0" FontSize="18" FontWeight="Bold">
+            <TextBlock Text="Мои магазины" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0" FontSize="18" FontWeight="Bold">
                 
             </TextBlock>
             
@@ -34,26 +34,7 @@
 
             <StackPanel Orientation="Vertical">
 
-                <Border Background="White" Width="250" Height="40" BorderThickness="1" BorderBrush="Gray" Margin="30 10 0 0"  HorizontalAlignment="Left" CornerRadius="10">
-                    <Button Height="40" Background="Transparent" BorderBrush="Transparent" Padding="0" Click="btnAdd_Click">
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
-                            <materialDesign:PackIcon  
-                                Kind="Add"
-                                Foreground="Gray" 
-                                VerticalAlignment="Top" 
-                                Margin="0,0,0,0" 
-                                Width="35" 
-                                Height="35"
-                            />
-
-                            <TextBlock Text="Добавить" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0">
-
-                            </TextBlock>
-
-                        </StackPanel>
-                    </Button>
-                </Border>
-
+                
                 <ScrollViewer x:Name="MyScrollViewer" VerticalScrollBarVisibility="Auto">
                     <WrapPanel Margin=" 20 10 20 10" x:Name="panel" >
 

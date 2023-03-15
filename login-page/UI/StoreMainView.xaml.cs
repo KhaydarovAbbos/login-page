@@ -61,6 +61,7 @@ namespace login_page.UI
             {
                 products_view.Visibility = Visibility.Visible;
                 products_view.GetMainView(this);
+                products_view.WindowLoad();
             }
         }
 
