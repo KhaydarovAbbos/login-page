@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using static login_page.UI.ShopView;
 
 namespace login_page.UI
 {
@@ -23,7 +26,6 @@ namespace login_page.UI
     {
         StoreMainView StoremainView;
 
-        public static string name = "";
 
         public ProductsView()
         {
@@ -33,13 +35,15 @@ namespace login_page.UI
         public void GetMainView(StoreMainView storeMainView)
         {
             StoremainView = storeMainView;
-
-            txtName.Text = name;
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             StoremainView.AllCloseControls(2);
+
+            StoremainView.txtSubCategoryName.Text = "";
+
+            StoremainView.nameSubCategory.Visibility = Visibility.Hidden;
         }
     }
 }

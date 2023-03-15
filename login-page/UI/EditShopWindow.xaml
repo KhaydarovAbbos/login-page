@@ -28,18 +28,20 @@
                         <TextBox 
                                     x:Name="txtName"
                                     materialDesign:HintAssist.Hint="Имя" 
-                                    Foreground="Gray"
+                                    Foreground="Black"
                                     Style="{StaticResource MaterialDesignTextBox}"
                                     Width="200" 
                                     Margin="10,0,0,0" 
                                     FontSize="18" 
-                                    VerticalAlignment="Center"
+                                    VerticalAlignment="Center" TextChanged="txtName_TextChanged"
                                 />
 
                     </StackPanel>
                 </Grid>
             </Border>
 
+            <TextBlock x:Name="txtError" FontSize="13" Width="200" Foreground="Red"/>
+            
             <Button x:Name="BtnEdit" 
                     Click="BtnEdit_Click" Width="258"
                     Margin="0 70 0 0" 

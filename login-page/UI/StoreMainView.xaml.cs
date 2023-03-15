@@ -21,6 +21,8 @@ namespace login_page.UI
     public partial class StoreMainView : UserControl
     {
         MainWindow Mainwindow;
+        public static string Storename;
+        public static int gridColumn1Width = 200, gridColumn2Width = 1120;
 
         public StoreMainView()
         {
@@ -30,6 +32,12 @@ namespace login_page.UI
         public void GetMainWindow(MainWindow mainWindow)
         {
             Mainwindow = mainWindow;
+
+            txtStoreName.Text = Storename;
+
+            MainGrid.ColumnDefinitions[0].Width = new GridLength(MainView.gridColumn1Width, GridUnitType.Pixel);
+            MainGrid.ColumnDefinitions[1].Width = new GridLength(MainView.gridColumn2Width, GridUnitType.Pixel);
+
         }
 
         private void create_MouseUp(object sender, MouseButtonEventArgs e)
@@ -78,11 +86,17 @@ namespace login_page.UI
             {
                 MainGrid.ColumnDefinitions[0].Width = new GridLength(60, GridUnitType.Pixel);
                 MainGrid.ColumnDefinitions[1].Width = new GridLength(1260, GridUnitType.Pixel);
+
+                gridColumn1Width = 60;
+                gridColumn2Width = 1260;
             }
             else
             {
                 MainGrid.ColumnDefinitions[0].Width = new GridLength(200, GridUnitType.Pixel);
                 MainGrid.ColumnDefinitions[1].Width = new GridLength(1120, GridUnitType.Pixel);
+
+                gridColumn1Width = 200;
+                gridColumn2Width = 1120;
             }
         }
     }

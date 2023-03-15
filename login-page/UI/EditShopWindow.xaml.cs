@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace login_page.UI
 {
@@ -44,8 +45,11 @@ namespace login_page.UI
         {
             try
             {
-                if (txtName.Text == "")
+                if (txtName.Text.Trim().Length == 0)
+                {
+                    txtError.Text = "Необходимый";
                     return;
+                }
 
                 DB dB = new DB();
                 DataTable dtShops = new DataTable();
@@ -65,6 +69,17 @@ namespace login_page.UI
             {
                 MessageBox.Show(ex.Message, "Xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void txtName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                txtError.Text = "Необходимый";
+                return;
+            }
+
+            txtError.Text = "";
         }
     }
 }

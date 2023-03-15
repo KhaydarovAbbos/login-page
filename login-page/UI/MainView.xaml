@@ -17,6 +17,12 @@
         <Border BorderBrush="Gray" BorderThickness="1" x:Name="hamburgerMenu" HorizontalAlignment="Left" >
             <Grid Grid.Column="0">
 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
+                
+                
                 <StackPanel>
 
                 <Button Width="40" Height="30" x:Name="btnMenu" Margin="10 5 0 5" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Background="Transparent" BorderBrush="Gray" Click="btnMenu_Click">
@@ -74,6 +80,29 @@
                     </ListViewItem>
                 </ListView>
             </StackPanel>
+
+                <ListView Width="199" Grid.Row="1">
+                    <ListViewItem x:Name="exit" Foreground="Black" TextBlock.TextAlignment="Center" BorderThickness="1" BorderBrush="Gray" Margin="0 0 0 0" MouseUp="exit_MouseUp" >
+                        <ListViewItem.Content>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                                <materialDesign:PackIcon  
+                                    Kind="ExitToApp"
+                                    Foreground="Gray" 
+                                    VerticalAlignment="Center" 
+                                    Margin="0,00,0,0" 
+                                    Height="35" Width="35"
+                                    />
+
+                                <TextBlock Text="Выход" VerticalAlignment="Center" Margin="20 0 0 0" HorizontalAlignment="Center"  FontSize="16" FontWeight="Bold">
+
+                                </TextBlock>
+
+                            </StackPanel>
+                        </ListViewItem.Content>
+                    </ListViewItem>
+                </ListView>
 
             </Grid>
         </Border>

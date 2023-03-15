@@ -25,8 +25,6 @@ namespace login_page.UI
     {
         StoreMainView StoremainView;
 
-        public static string name = "";
-
         public ProductSubCategoryView()
         {
             InitializeComponent();
@@ -35,8 +33,6 @@ namespace login_page.UI
         public void GetMainView(StoreMainView storeMainView)
         {
             StoremainView = storeMainView;
-
-            txtName.Text = name;
         }
 
         public void WindowLoad()
@@ -52,7 +48,7 @@ namespace login_page.UI
 
             dB.OpenConnection();
 
-            MySqlCommand command = new MySqlCommand("select * from product_sub_category", dB.GetConnection());
+            MySqlCommand command = new MySqlCommand("select * from product_sub_category order by id desc", dB.GetConnection());
             mySqlDataAdapter.SelectCommand = command;
             mySqlDataAdapter.Fill(dtShops);
 
@@ -74,7 +70,8 @@ namespace login_page.UI
                     Height = 150,
                     BorderBrush = Brushes.Gray,
                     BorderThickness = new Thickness(1),
-                    Margin = new Thickness(10, 10, 0, 0)
+                    Margin = new Thickness(10, 10, 0, 0),
+                    CornerRadius = new CornerRadius(10)
                 };
 
                 ColumnDefinition c1 = new ColumnDefinition
@@ -104,23 +101,6 @@ namespace login_page.UI
                     Children = { txt }
                 };
 
-                MyButton btnAdd = new MyButton
-                {
-                    Width = 40,
-                    Height = 35,
-                    Background = Brushes.White,
-                    BorderBrush = Brushes.White,
-                    Margin = new Thickness(0, 10, 0, 0),
-                    Padding = new Thickness(0),
-                    Content = new Image
-                    {
-                        Source = new BitmapImage(new Uri("../Images/add.png", UriKind.Relative)),
-                        VerticalAlignment = VerticalAlignment.Center,
-                        Width = 20,
-                        Height = 20
-                    }
-                };
-                btnAdd.Click += new RoutedEventHandler(btnAdd_Click);
 
                 MyButton btnDelete = new MyButton
                 {
@@ -147,7 +127,7 @@ namespace login_page.UI
                     Height = 35,
                     Background = Brushes.White,
                     BorderBrush = Brushes.White,
-                    Margin = new Thickness(0, 10, 0, 0),
+                    Margin = new Thickness(0, 40, 0, 0),
                     Padding = new Thickness(0),
                     Content = new Image
                     {
@@ -164,7 +144,7 @@ namespace login_page.UI
 
                 StackPanel stackPanel = new StackPanel
                 {
-                    Children = { btnAdd, btnEdit, btnDelete }
+                    Children = { btnEdit, btnDelete }
                 };
 
                 Grid.SetColumn(stackPanel, 1);
@@ -179,12 +159,15 @@ namespace login_page.UI
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             StoremainView.AllCloseControls(1);
+            StoremainView.txtSubCategoryName.Text = "";
+            StoremainView.txtcategoryName.Text = "";
+            StoremainView.nameCategory.Visibility = Visibility.Hidden;
+            StoremainView.nameSubCategory.Visibility = Visibility.Hidden;
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            AddProductSubCategoryWindow addProductcategory = new AddProductSubCategoryWindow(this);
-            addProductcategory.ShowDialog();
+            
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -239,11 +222,17 @@ namespace login_page.UI
 
             string name = textBlock.Text;
 
-            ProductsView.name = name;
+            StoremainView.txtSubCategoryName.Text = name;
+            StoremainView.nameSubCategory.Visibility = Visibility.Visible;
 
             StoremainView.AllCloseControls(3);
 
+        }
 
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddProductSubCategoryWindow addProductcategory = new AddProductSubCategoryWindow(this);
+            addProductcategory.ShowDialog();
         }
     }
 }

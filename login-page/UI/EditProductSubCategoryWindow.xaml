@@ -26,7 +26,7 @@
                         <TextBox 
                             x:Name="txtName"
                             materialDesign:HintAssist.Hint="Имя" 
-                            Foreground="Gray"
+                            Foreground="Black"
                             Style="{StaticResource MaterialDesignTextBox}"
                             Width="200" 
                             Margin="10,0,0,0" 

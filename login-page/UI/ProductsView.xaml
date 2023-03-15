@@ -23,16 +23,10 @@
 
             <Grid>
 
-                <StackPanel Orientation="Horizontal">
 
-                    <TextBlock x:Name="txtName" VerticalAlignment="Center" Margin="20 0 0 0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left">
+                <TextBlock x:Name="txtName" Text="Список продукты" VerticalAlignment="Center" Margin="20 0 0 0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center">
 
-                    </TextBlock>
-
-                </StackPanel>
-
-
-
+                </TextBlock>
 
                 <Button x:Name="btnExit" Width="150" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Background="#FFFFFF" BorderBrush="White" Click="btnExit_Click">
                     <StackPanel Orientation="Horizontal">
@@ -40,7 +34,7 @@
 
                         </Image>
 
-                        <TextBlock Text="Чиқиш" Margin="20 0 0 0" FontSize="18">
+                        <TextBlock Text="Назад" Margin="20 0 0 0" FontSize="18">
 
                         </TextBlock>
 
@@ -51,12 +45,6 @@
 
         <Grid Grid.Row="1" Margin="0 20 0 10">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <TextBlock Text="Список продукты" FontSize="18" FontWeight="Bold" Margin="20 0 0 0"/>
             <WrapPanel Margin=" 20 10 20 10" x:Name="panel" >
 
             </WrapPanel>

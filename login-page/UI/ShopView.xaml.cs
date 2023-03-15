@@ -61,7 +61,8 @@ namespace login_page.UI
                     Height = 150,
                     BorderBrush = Brushes.Gray,
                     BorderThickness = new Thickness(1),
-                    Margin = new Thickness(10, 10, 0, 0)
+                    Margin = new Thickness(10, 10, 0, 0),
+                    CornerRadius = new CornerRadius(10)
                 };
 
                 ColumnDefinition c1 = new ColumnDefinition
@@ -91,24 +92,6 @@ namespace login_page.UI
                     Children = {txt}
                 };
 
-                MyButton btnAdd = new MyButton
-                {
-                    Width = 40,
-                    Height = 35,
-                    Background = Brushes.White,
-                    BorderBrush = Brushes.White,
-                    Margin = new Thickness(0, 10, 0, 0),
-                    Padding = new Thickness(0),
-                    Content = new Image
-                    {
-                        Source = new BitmapImage(new Uri("../Images/add.png", UriKind.Relative)),
-                        VerticalAlignment = VerticalAlignment.Center,
-                        Width = 20,
-                        Height = 20
-                    }
-                };
-                btnAdd.Click += new RoutedEventHandler(btnAdd_Click);
-
                 MyButton btnDelete = new MyButton
                 {
                     Width = 40,
@@ -134,7 +117,7 @@ namespace login_page.UI
                     Height = 35,
                     Background = Brushes.White,
                     BorderBrush = Brushes.White,
-                    Margin = new Thickness(0, 10, 0, 0),
+                    Margin = new Thickness(0, 40, 0, 0),
                     Padding = new Thickness(0),
                     Content = new Image
                     {
@@ -151,7 +134,7 @@ namespace login_page.UI
 
                 StackPanel stackPanel = new StackPanel
                 {
-                    Children = { btnAdd, btnEdit, btnDelete }
+                    Children = { btnEdit, btnDelete }
                 };
 
                 Grid.SetColumn(stackPanel, 1);
@@ -170,6 +153,12 @@ namespace login_page.UI
 
         private void TextBlock_Click(object sender, MouseEventArgs e)
         {
+            TextBlock textBlock = (TextBlock)sender;
+
+            string name = textBlock.Text;
+
+            StoreMainView.Storename = name;
+
             MainView.AllCloseControls(2);
         }
 
