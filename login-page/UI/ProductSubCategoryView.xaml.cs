@@ -190,21 +190,27 @@ namespace login_page.UI
         {
             try
             {
-                MyButton btnDelete = sender as MyButton;
+                var result = MessageBox.Show("Вы уверены, что хотите удалить", "Осторожность", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-                int id = int.Parse(btnDelete.Totalinfo.store_id);
-
-                if (id != 0)
+                if (result == MessageBoxResult.Yes)
                 {
-                    DB dB = new DB();
-                    dB.OpenConnection();
 
-                    MySqlCommand command = new MySqlCommand($"delete from product_sub_category where id = '{id}'", dB.GetConnection());
-                    command.ExecuteNonQuery();
+                    MyButton btnDelete = sender as MyButton;
 
-                    dB.CloseConnection();
+                    int id = int.Parse(btnDelete.Totalinfo.store_id);
 
-                    WindowLoad();
+                    if (id != 0)
+                    {
+                        DB dB = new DB();
+                        dB.OpenConnection();
+
+                        MySqlCommand command = new MySqlCommand($"delete from product_sub_category where id = '{id}'", dB.GetConnection());
+                        command.ExecuteNonQuery();
+
+                        dB.CloseConnection();
+
+                        WindowLoad();
+                    }
                 }
             }
             catch (Exception ex)
