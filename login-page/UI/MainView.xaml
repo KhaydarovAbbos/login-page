@@ -111,7 +111,6 @@
             <menuviews:ShopView x:Name="shop_view" Visibility="Hidden" Height="Auto" Width="Auto"/>
         </DockPanel>
 
-
         <DockPanel Grid.Column="2" Grid.Row="0" >
             <menuviews:StoreMainView x:Name="store_main_view" Visibility="Hidden" Height="Auto" Width="Auto"/>
         </DockPanel>
