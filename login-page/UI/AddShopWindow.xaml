@@ -40,7 +40,7 @@
             
             <Button x:Name="BtnAdd" 
                     Click="BtnAdd_Click" Width="258"
-                    Margin="0 70 0 0" 
+                    Margin="0 40 0 0" 
                     Content="Создавать" 
                     Style="{StaticResource Button}" VerticalAlignment="Bottom">
                     

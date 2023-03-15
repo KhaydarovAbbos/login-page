@@ -44,7 +44,7 @@
             
             <Button x:Name="BtnEdit" 
                     Click="BtnEdit_Click" Width="258"
-                    Margin="0 70 0 0" 
+                    Margin="0 40 0 0" 
                     Content="Редактировать" 
                     Style="{StaticResource Button}" VerticalAlignment="Bottom">
 
