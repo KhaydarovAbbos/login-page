@@ -76,21 +76,24 @@ namespace login_page.UI
                     Width = new GridLength(50, GridUnitType.Star)
                 };
 
-                TextBlock txt = new TextBlock
+                MyButton button = new MyButton
                 {
-                    Foreground = new SolidColorBrush(Colors.Gray),
-                    FontSize = 25,
+                    Background = Brushes.Transparent,
+                    BorderBrush = Brushes.Transparent,
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    Text = $"{dtShops.Rows[i]["name"]}",
-                    FontWeight = FontWeights.Bold
+                    Content = $"{dtShops.Rows[i]["name"]}",
+                    FontWeight = FontWeights.Bold,
+                    FontSize = 25,
+                    Width = 200,
+                    Height = 150
                 };
-                txt.MouseUp += new MouseButtonEventHandler(txt_Mouseup);
+                button.Click += new RoutedEventHandler(btnEnter_Click);
 
                 Grid grid = new Grid
                 {
                     ColumnDefinitions = { c1, c2 },
-                    Children = { txt }
+                    Children = { button }
                 };
 
 
@@ -208,18 +211,25 @@ namespace login_page.UI
             }
         }
 
-        private void txt_Mouseup(object sender, MouseButtonEventArgs e)
+        private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock textBlock = sender as TextBlock;
+            try
+            {
+                MyButton myButton = (MyButton)sender;
 
-            string name = textBlock.Text;
+                string name = myButton.Content.ToString();
 
-            StoremainView.txtSubCategoryName.Text = name;
-            StoremainView.nameSubCategory.Visibility = Visibility.Visible;
+                StoremainView.txtSubCategoryName.Text = name;
+                StoremainView.nameSubCategory.Visibility = Visibility.Visible;
+                StoremainView.AllCloseControls(3);
 
-            StoremainView.AllCloseControls(3);
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {

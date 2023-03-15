@@ -75,21 +75,24 @@ namespace login_page.UI
                     Width = new GridLength(50, GridUnitType.Star)
                 };
 
-                TextBlock txt = new TextBlock
+                MyButton button = new MyButton
                 {
-                    Foreground = new SolidColorBrush(Colors.Gray),
-                    FontSize = 25,
+                    Background = Brushes.Transparent,
+                    BorderBrush = Brushes.Transparent,
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    Text = $"{dtShops.Rows[i]["name"]}",
-                    FontWeight = FontWeights.Bold
+                    Content = $"{dtShops.Rows[i]["name"]}",
+                    FontWeight = FontWeights.Bold,
+                    FontSize = 25,
+                    Width = 200,
+                    Height = 150
                 };
-                txt.MouseUp += new MouseButtonEventHandler(TextBlock_Click);
+                button.Click += new RoutedEventHandler(btnEnter_Click);
 
                 Grid grid = new Grid
                 {
                     ColumnDefinitions = { c1, c2 },
-                    Children = { txt }
+                    Children = { button }
                 };
 
 
@@ -152,17 +155,6 @@ namespace login_page.UI
             addShop.ShowDialog();
         }
 
-        private void TextBlock_Click(object sender, MouseEventArgs e)
-        {
-            TextBlock textBlock = (TextBlock)sender;
-
-            string name = textBlock.Text;
-
-            StoreMainView.Storename = name;
-
-            MainView.AllCloseControls(2);
-        }
-
         public class TotalInfo
         {
             public string store_id { set; get; }
@@ -214,6 +206,25 @@ namespace login_page.UI
                 EditShopWindow editShop = new EditShopWindow();
                 editShop.WindowLoad(id, this);
                 editShop.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void btnEnter_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MyButton myButton = (MyButton)sender;
+
+                string name = myButton.Content.ToString();
+
+                StoreMainView.Storename = name;
+
+                MainView.AllCloseControls(2);
 
             }
             catch (Exception ex)
