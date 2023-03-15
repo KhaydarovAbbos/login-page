@@ -20,15 +20,16 @@ namespace login_page.UI
     /// </summary>
     public partial class EditProductWindow : Window
     {
-        public EditProductWindow()
+        public EditProductWindow(Product product)
         {
             InitializeComponent();
 
-            //txtName.Text = product.Name;
-            //txtQuantity.Text = product.Quantity.ToString();
-            //txtSellingPrice.Text = product.Price.ToString();
-            //txtArrivalPrice.Text = product.ArrivalPrice.ToString();
+            txtName.Text = product.Name;
+            txtQuantity.Text = product.Quantity.ToString();
+            txtSellingPrice.Text = product.Price.ToString();
+            txtArrivalPrice.Text = product.ArrivalPrice.ToString();
         }
+
 
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {

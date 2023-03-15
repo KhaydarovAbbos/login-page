@@ -7,6 +7,7 @@ using static login_page.UI.ShopView;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using login_page.Entities.Products;
 
 namespace login_page.UI
 {
@@ -16,6 +17,7 @@ namespace login_page.UI
     public partial class ProductsView : UserControl
     {
         StoreMainView StoremainView;
+        Product product;
 
         public ProductsView()
         {
@@ -30,16 +32,19 @@ namespace login_page.UI
             }
 
             DB dB = new DB();
-            DataTable dtShops = new DataTable();
+            DataTable dtProducts = new DataTable();
             MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
 
             dB.OpenConnection();
 
             MySqlCommand command = new MySqlCommand("select * from products order by id desc", dB.GetConnection());
             mySqlDataAdapter.SelectCommand = command;
-            mySqlDataAdapter.Fill(dtShops);
+            mySqlDataAdapter.Fill(dtProducts);
 
             dB.CloseConnection();
+
+            
+
 
             #region Button add
             Border borderAdd = new Border
@@ -69,13 +74,23 @@ namespace login_page.UI
 
             #endregion
 
-            for (int i = 0; i < dtShops.Rows.Count; i++)
+            for (int i = 0; i < dtProducts.Rows.Count; i++)
             {
 
+                product = new Product()
+                {
+                    Id = int.Parse(dtProducts.Rows[i]["id"].ToString()),
+                    Name = dtProducts.Rows[i]["name"].ToString(),
+                    ArrivalPrice = double.Parse(dtProducts.Rows[i]["arrival_price"].ToString()),
+                    Price = double.Parse(dtProducts.Rows[i]["selling_price"].ToString()),
+                    Quantity = double.Parse(dtProducts.Rows[i]["quantity"].ToString())
+
+                };
+
                 ///////////////////////////////////////////////
-                TotalInfo totalInfo = new TotalInfo();
-                totalInfo.store_id = dtShops.Rows[i]["id"].ToString();
-                totalInfo.store_name = dtShops.Rows[i]["name"].ToString();
+                //TotalInfo totalInfo = new TotalInfo();
+                //totalInfo.store_id = dtShops.Rows[i]["id"].ToString();
+                //totalInfo.store_name = dtShops.Rows[i]["name"].ToString();
                 ///////////////////////////////////////////////
 
                 Border border = new Border
@@ -109,7 +124,7 @@ namespace login_page.UI
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Left,
                     Margin = new Thickness(10, 10, 0, 0),
-                    Text = $"{dtShops.Rows[i]["name"]}",
+                    Text = product.Name,
                     TextWrapping = TextWrapping.Wrap,
                     FontWeight = FontWeights.Bold,
                     FontSize = 25,
@@ -121,7 +136,7 @@ namespace login_page.UI
                 {
                     HorizontalAlignment = HorizontalAlignment.Left,
                     FontSize = 16,
-                    Text = $"Цена прибытия : {dtShops.Rows[i]["arrival_price"]}",
+                    Text = $"Цена прибытия : {product.ArrivalPrice}",
                     Margin = new Thickness(10, 0, 0, 0)
                 };
 
@@ -129,7 +144,7 @@ namespace login_page.UI
                 {
                     HorizontalAlignment = HorizontalAlignment.Left,
                     FontSize = 16,
-                    Text = $"Цена : {dtShops.Rows[i]["selling_price"]}",
+                    Text = $"Цена : {product.Price}",
                     Margin = new Thickness(10, 0, 0, 0)
                 };
 
@@ -137,7 +152,7 @@ namespace login_page.UI
                 {
                     HorizontalAlignment = HorizontalAlignment.Left,
                     FontSize = 16,
-                    Text = $"Количество : {dtShops.Rows[i]["quantity"]}",
+                    Text = $"Количество : {product.Quantity}",
                     Margin = new Thickness(10, 0, 0, 0)
                 };
 
@@ -155,7 +170,7 @@ namespace login_page.UI
 
                 #region  Buttons edit and delete
 
-                MyButton btnDelete = new MyButton
+                ProductButton btnDelete = new ProductButton
                 {
                     Width = 40,
                     Height = 35,
@@ -172,10 +187,10 @@ namespace login_page.UI
                         Height = 20
                     }
                 };
-                btnDelete.Totalinfo = totalInfo;
+                btnDelete.Product = product;
                 btnDelete.Click += new RoutedEventHandler(btnDelete_Click);
 
-                MyButton btnEdit = new MyButton
+                ProductButton btnEdit = new ProductButton
                 {
                     Width = 40,
                     Height = 35,
@@ -194,7 +209,7 @@ namespace login_page.UI
                     }
 
                 };
-                btnEdit.Totalinfo = totalInfo;
+                btnEdit.Product = product;
                 btnEdit.Click += new RoutedEventHandler(btnEdit_Click);
 
                 StackPanel stackPanel = new StackPanel
@@ -235,9 +250,9 @@ namespace login_page.UI
                 
                 if (result == MessageBoxResult.Yes) 
                 {
-                    MyButton btnDelete = sender as MyButton;
+                    ProductButton btnDelete = sender as ProductButton;
 
-                    int id = int.Parse(btnDelete.Totalinfo.store_id);
+                    int id = btnDelete.Product.Id;
 
                     if (id != 0)
                     {
@@ -258,20 +273,18 @@ namespace login_page.UI
             {
                 MessageBox.Show(ex.Message.ToString(), "xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                MyButton btnDelete = sender as MyButton;
+                ProductButton btnDelete = sender as ProductButton;
 
-                int id = int.Parse(btnDelete.Totalinfo.store_id);
+                Product product = btnDelete.Product;
 
-                //EditShopWindow editShop = new EditShopWindow();
-                //editShop.WindowLoad(id, this);
-                //editShop.ShowDialog();
+                EditProductWindow editProductWindow = new EditProductWindow(product);
+                editProductWindow.ShowDialog();
 
             }
             catch (Exception ex)
@@ -320,5 +333,10 @@ namespace login_page.UI
 
             
         }
+    }
+
+    public class ProductButton : Button
+    {
+        public Product Product { get; set; }
     }
 }
