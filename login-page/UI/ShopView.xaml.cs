@@ -39,7 +39,7 @@ namespace login_page.UI
 
             dB.OpenConnection();
 
-            MySqlCommand command = new MySqlCommand("select * from shops", dB.GetConnection());
+            MySqlCommand command = new MySqlCommand("select * from shops order by id desc", dB.GetConnection());
             mySqlDataAdapter.SelectCommand = command;
             mySqlDataAdapter.Fill(dtShops);
 
@@ -91,6 +91,7 @@ namespace login_page.UI
                     ColumnDefinitions = { c1, c2 },
                     Children = {txt}
                 };
+
 
                 MyButton btnDelete = new MyButton
                 {

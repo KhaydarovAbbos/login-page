@@ -71,7 +71,7 @@
                                     Height="35" Width="35"
                                 />
 
-                                <TextBlock Text="Созламалар" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0" FontSize="16" FontWeight="Bold">
+                                    <TextBlock Text="Настройки" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0" FontSize="16" FontWeight="Bold">
 
                                 </TextBlock>
 
