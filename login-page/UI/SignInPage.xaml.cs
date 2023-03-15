@@ -60,11 +60,13 @@ namespace login_page.UI
         {
             if (txtLogin.Text == "")
             {
+                txtLoginCheck.Text = "Необходимый";
                 txtLogin.Focus();
                 return;
             }
             if (txtPassword.Password == "")
             {
+                txtPasswordCheck.Text = "Необходимый";
                 txtPassword.Focus();
                 return;
             }
@@ -182,13 +184,13 @@ namespace login_page.UI
         {
             if (txtPassword.Password == "" )
             {
-                txtPasswordCheck.Text = "Required";
+                txtPasswordCheck.Text = "Необходимый";
                 TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Red);
                 return;
             }
             if (txtPassword.Password.Length < 8 )
             {
-                txtPasswordCheck.Text = "Minimum 8 characters are required";
+                txtPasswordCheck.Text = "Требуется минимум 8 символов";
                 TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Red);
                 return;
             }
@@ -199,17 +201,17 @@ namespace login_page.UI
 
                 if (response == Enums.PasswordScore.NoChar)
                 {
-                    txtPasswordCheck.Text = "Must contain at least 1 letter";
+                    txtPasswordCheck.Text = "Должен содержать хотя бы 1 букву";
                     return;
                 }
                 if (response == Enums.PasswordScore.NoNumber)
                 {
-                    txtPasswordCheck.Text = "Must contain at least 1 digit";
+                    txtPasswordCheck.Text = "Должен содержать хотя бы 1 цифру";
                     return;
                 }
                 if (response == Enums.PasswordScore.NoNumberAndChar)
                 {
-                    txtPasswordCheck.Text = "Must contain at least 1 digit and 1 letter";
+                    txtPasswordCheck.Text = "Должен содержать как минимум 1 цифру и 1 букву";
                     return;
                 }
                 if (response == Enums.PasswordScore.Strong)
@@ -217,6 +219,18 @@ namespace login_page.UI
                     txtPasswordCheck.Text = "";
                     TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Green);
                 }
+            }
+        }
+
+        private void txtLogin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtLogin.Text.Length > 0)
+            {
+                txtLoginCheck.Text = "";
+            }
+            if (txtLogin.Text.Length == 0)
+            {
+                txtLoginCheck.Text = "Необходимый";
             }
         }
     }

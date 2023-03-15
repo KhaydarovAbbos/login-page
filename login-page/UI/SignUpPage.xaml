@@ -80,7 +80,7 @@
                                     materialDesign:HintAssist.Hint="Логин" 
                                     Foreground="Black"
                                     Style="{StaticResource MaterialDesignTextBox}"
-                                    Width="200" 
+                                    Width="200"  TextChanged="txtLogin_TextChanged"
                                     Margin="10,0,0,0" 
                                     FontSize="18" 
                                     VerticalAlignment="Center"
@@ -89,9 +89,16 @@
                             </StackPanel>
                         </Grid>
                     </Border>
+                        <TextBlock x:Name="txtErrorLogin"  
+                            HorizontalAlignment="Center" Width="200"
+                            Margin="0 0 0 0" 
+                            Foreground="Red">
+
+                        </TextBlock>
+                    
                 </StackPanel>
 
-                <StackPanel Margin="0 30 0 30">
+                <StackPanel Margin="0 10 0 30">
                     <Border Width="298" 
                         Height="40" 
                         BorderThickness="1" 
@@ -132,7 +139,7 @@
 
                     <StackPanel>
                         <TextBlock x:Name="txtPasswordCheck"  
-                            HorizontalAlignment="Center" 
+                            HorizontalAlignment="Center"  Width="200"
                             Margin="0 0 0 0" 
                             Foreground="Red">
 
@@ -183,7 +190,7 @@
                     </Border>
 
                     <StackPanel>
-                        <TextBlock x:Name="txtConiformPasswordCheck"  
+                        <TextBlock x:Name="txtConiformPasswordCheck"  Width="200"
                             HorizontalAlignment="Center" 
                             Margin="0 0 0 0" 
                             Foreground="Red">
@@ -207,7 +214,7 @@
                 </Button>
 
 
-                <Grid Margin="0 40 0 0">
+                <Grid Margin="0 40 0 20">
 
                     <TextBlock 
                         Text="" 
