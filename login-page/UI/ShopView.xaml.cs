@@ -86,10 +86,10 @@ namespace login_page.UI
                 };
                 txt.MouseUp += new MouseButtonEventHandler(TextBlock_Click);
 
-                Grid grid = new Grid 
+                Grid grid = new Grid
                 {
                     ColumnDefinitions = { c1, c2 },
-                    Children = {txt}
+                    Children = { txt }
                 };
 
 
@@ -183,7 +183,7 @@ namespace login_page.UI
 
                 int id = int.Parse(btnDelete.Totalinfo.store_id);
 
-                if (id != 0) 
+                if (id != 0)
                 {
                     DB dB = new DB();
                     dB.OpenConnection();

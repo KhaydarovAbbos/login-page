@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace login_page.UI
 {
@@ -52,7 +41,7 @@ namespace login_page.UI
             productSubCategory_view.Visibility = Visibility.Hidden;
             products_view.Visibility = Visibility.Hidden;
 
-            if(i == -1)
+            if (i == -1)
             {
                 Mainwindow.AllCloseControls(3);
             }

@@ -33,7 +33,7 @@ namespace login_page.UI
 
             dB.CloseConnection();
 
-            if (dtShops.Rows.Count > 0 )
+            if (dtShops.Rows.Count > 0)
             {
                 txtName.Text = dtShops.Rows[0]["name"].ToString();
             }

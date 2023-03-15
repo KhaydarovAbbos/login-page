@@ -1,6 +1,4 @@
-﻿using SQLite;
-using System.IO;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Effects;
 
@@ -53,17 +51,17 @@ namespace login_page
                 sign_up_view.Visibility = Visibility.Visible;
                 sign_up_view.GetSignInPage(sign_in_view);
             }
-            if( i == 3)
+            if (i == 3)
             {
-                main_view.Visibility= Visibility.Visible;
+                main_view.Visibility = Visibility.Visible;
                 main_view.GetMainWindow(this);
             }
-            if(i == 4)
+            if (i == 4)
             {
                 store_main_view.Visibility = Visibility.Visible;
                 store_main_view.GetMainWindow(this);
             }
-            
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

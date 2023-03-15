@@ -2,7 +2,6 @@
 using login_page.Helper;
 using MaterialDesignThemes.Wpf;
 using MySql.Data.MySqlClient;
-using SQLite;
 using System;
 using System.Data;
 using System.Linq;
@@ -89,7 +88,7 @@ namespace login_page.UI
                 try
                 {
                     DB dB = new DB();
-                    
+
                     dB.OpenConnection();
 
                     MySqlCommand command = new MySqlCommand($"insert into Users(Login, Password) values('{user.Login}', '{HashPassword.Create(user.Password)}')", dB.GetConnection());
@@ -120,7 +119,7 @@ namespace login_page.UI
                 txtPassword.Password = null;
                 txtConiformPassword.Password = null;
                 txtError.Text = "";
-                isClear= false;
+                isClear = false;
             }
         }
 
@@ -169,7 +168,7 @@ namespace login_page.UI
                         TextFieldAssist.SetUnderlineBrush(txtConiformPassword, Brushes.Red);
                         txtConiformPasswordSucces.Visibility = Visibility.Hidden;
                     }
-                    if(txtPassword.Password == txtConiformPassword.Password)
+                    if (txtPassword.Password == txtConiformPassword.Password)
                     {
                         txtConiformPasswordCheck.Text = "";
                         TextFieldAssist.SetUnderlineBrush(txtConiformPassword, Brushes.Green);
@@ -186,7 +185,7 @@ namespace login_page.UI
             DB dB = new DB();
             DataTable dtUser = new DataTable();
             MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
-            
+
 
             dB.OpenConnection();
 
@@ -215,13 +214,13 @@ namespace login_page.UI
         private void txtConiformPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
             txtConiformPasswordSucces.Visibility = Visibility.Hidden;
-            if (txtConiformPassword.Password == "" && isClear == false )
+            if (txtConiformPassword.Password == "" && isClear == false)
             {
                 txtConiformPasswordCheck.Text = "Required";
                 TextFieldAssist.SetUnderlineBrush(txtConiformPassword, Brushes.Red);
                 return;
             }
-            if (txtConiformPassword.Password.Length < 8 && isClear == false )
+            if (txtConiformPassword.Password.Length < 8 && isClear == false)
             {
                 txtConiformPasswordCheck.Text = "Minimum 8 characters are required";
                 TextFieldAssist.SetUnderlineBrush(txtConiformPassword, Brushes.Red);
@@ -253,7 +252,7 @@ namespace login_page.UI
                     TextFieldAssist.SetUnderlineBrush(txtConiformPassword, Brushes.Green);
                     txtConiformPasswordSucces.Visibility = Visibility.Visible;
                 }
-                if(txtConiformPassword.Password != txtPassword.Password)
+                if (txtConiformPassword.Password != txtPassword.Password)
                 {
                     txtConiformPasswordCheck.Text = "Invalid coniform password";
                     TextFieldAssist.SetUnderlineBrush(txtConiformPassword, Brushes.Red);

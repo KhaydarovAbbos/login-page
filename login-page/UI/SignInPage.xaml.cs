@@ -1,10 +1,7 @@
 ﻿using login_page.Entities.User;
 using login_page.Helper;
-using login_page.Service.Interfaces;
-using login_page.Service.Services;
 using MaterialDesignThemes.Wpf;
 using MySql.Data.MySqlClient;
-using SQLite;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -12,7 +9,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace login_page.UI
@@ -167,7 +163,7 @@ namespace login_page.UI
                 MessageBox.Show(ex.Message, "Xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
                 return (false, false);
             }
-            
+
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
@@ -182,19 +178,19 @@ namespace login_page.UI
 
         private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (txtPassword.Password == "" )
+            if (txtPassword.Password == "")
             {
                 txtPasswordCheck.Text = "Необходимый";
                 TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Red);
                 return;
             }
-            if (txtPassword.Password.Length < 8 )
+            if (txtPassword.Password.Length < 8)
             {
                 txtPasswordCheck.Text = "Требуется минимум 8 символов";
                 TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Red);
                 return;
             }
-            if (txtPassword.Password != "" )
+            if (txtPassword.Password != "")
             {
                 var response = CheckPassword.CheckStrength(txtPassword.Password);
                 TextFieldAssist.SetUnderlineBrush(txtPassword, Brushes.Red);

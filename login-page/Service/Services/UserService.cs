@@ -2,10 +2,6 @@
 using login_page.Infrastructure.IRepository;
 using login_page.Service.Interfaces;
 using login_page.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace login_page.Service.Services
@@ -16,7 +12,7 @@ namespace login_page.Service.Services
 
         public UserService(IUserRepository userRepository)
         {
-            UserRepository = userRepository;   
+            UserRepository = userRepository;
         }
 
         public Task<User> CheckUser(UserSignUpViewModel userSignUpViewModel)
