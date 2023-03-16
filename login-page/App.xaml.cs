@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Windows;
 
 namespace login_page
@@ -13,6 +15,8 @@ namespace login_page
 
         public App()
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
         }
     }
 }

@@ -37,7 +37,7 @@
 
                         </Image>
 
-                        <TextBlock Text="Назад" Margin="20 0 0 0" FontSize="18">
+                        <TextBlock Text="Назад" Margin="20 0 0 0" FontSize="18" Foreground="Black">
 
                         </TextBlock>
 
