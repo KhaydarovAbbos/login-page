@@ -1,6 +1,8 @@
-﻿using MySql.Data.MySqlClient;
+﻿using login_page.Entities.Products;
+using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,7 +18,6 @@ namespace login_page.UI
     public partial class ProductSubCategoryView : UserControl
     {
         StoreMainView StoremainView;
-        public static int Category_id;
 
         public ProductSubCategoryView()
         {
@@ -41,7 +42,7 @@ namespace login_page.UI
 
             dB.OpenConnection();
 
-            MySqlCommand command = new MySqlCommand($"select * from product_sub_category where category_id={Category_id} order by id desc", dB.GetConnection());
+            MySqlCommand command = new MySqlCommand($"select * from product_sub_category where category_id={StoremainView.category_id.Content} order by id desc", dB.GetConnection());
             mySqlDataAdapter.SelectCommand = command;
             mySqlDataAdapter.Fill(dtShops);
 
@@ -77,9 +78,10 @@ namespace login_page.UI
 
                 ///////////////////////////////////////////////
                 TotalInfo totalInfo = new TotalInfo();
-                totalInfo.store_id = dtShops.Rows[i]["id"].ToString();
-                totalInfo.store_name = dtShops.Rows[i]["name"].ToString();
+                totalInfo.Id = int.Parse(dtShops.Rows[i]["id"].ToString());
+                totalInfo.Name = dtShops.Rows[i]["name"].ToString();
                 ///////////////////////////////////////////////
+
 
                 Border border = new Border
                 {
@@ -114,6 +116,7 @@ namespace login_page.UI
                     Width = 200,
                     Height = 150
                 };
+                button.Totalinfo = totalInfo;
                 button.Click += new RoutedEventHandler(btnEnter_Click);
 
                 Grid grid = new Grid
@@ -198,7 +201,7 @@ namespace login_page.UI
 
                     MyButton btnDelete = sender as MyButton;
 
-                    int id = int.Parse(btnDelete.Totalinfo.store_id);
+                    int id = btnDelete.Totalinfo.Id;
 
                     if (id != 0)
                     {
@@ -227,7 +230,7 @@ namespace login_page.UI
             {
                 MyButton btnDelete = sender as MyButton;
 
-                int id = int.Parse(btnDelete.Totalinfo.store_id);
+                int id = btnDelete.Totalinfo.Id;
 
                 EditProductSubCategoryWindow editProductCategoryWindow = new EditProductSubCategoryWindow(this, id);
                 editProductCategoryWindow.ShowDialog();
@@ -245,9 +248,8 @@ namespace login_page.UI
             {
                 MyButton myButton = (MyButton)sender;
 
-                string name = myButton.Content.ToString();
-
-                StoremainView.txtSubCategoryName.Text = name;
+                StoremainView.txtSubCategoryName.Text = myButton.Totalinfo.Name;
+                StoremainView.sub_category_id.Content = myButton.Totalinfo.Id;
                 StoremainView.nameSubCategory.Visibility = Visibility.Visible;
                 StoremainView.AllCloseControls(3);
             }
@@ -259,7 +261,7 @@ namespace login_page.UI
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddProductSubCategoryWindow addProductcategory = new AddProductSubCategoryWindow(this, Category_id);
+            AddProductSubCategoryWindow addProductcategory = new AddProductSubCategoryWindow(this, int.Parse(StoremainView.category_id.Content.ToString()));
             addProductcategory.ShowDialog();
         }
     }

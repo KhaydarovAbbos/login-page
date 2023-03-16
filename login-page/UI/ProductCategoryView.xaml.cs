@@ -76,7 +76,7 @@ namespace login_page.UI
             for (int i = 0; i < dtShops.Rows.Count; i++)
             {
 
-                ProductCategory productCategory = new ProductCategory()
+                TotalInfo totalInfo = new TotalInfo()
                 {
                     Id = int.Parse(dtShops.Rows[i]["id"].ToString()),
                     Name = dtShops.Rows[i]["name"].ToString(),
@@ -110,13 +110,13 @@ namespace login_page.UI
                     BorderBrush = Brushes.Transparent,
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    Content = productCategory.Name,
+                    Content = totalInfo.Name,
                     FontWeight = FontWeights.Bold,
                     FontSize = 25,
                     Width = 200,
                     Height = 150
                 };
-                button.ProductCategory = productCategory;
+                button.Totalinfo = totalInfo;
                 button.Click += new RoutedEventHandler(btnEnter_Click);
 
                 Grid grid = new Grid
@@ -143,7 +143,7 @@ namespace login_page.UI
                         Height = 20
                     }
                 };
-                btnDelete.ProductCategory = productCategory;
+                btnDelete.Totalinfo = totalInfo;
                 btnDelete.Click += new RoutedEventHandler(btnDelete_Click);
 
                 MyButton btnEdit = new MyButton
@@ -165,7 +165,7 @@ namespace login_page.UI
                     }
 
                 };
-                btnEdit.ProductCategory = productCategory;
+                btnEdit.Totalinfo = totalInfo;
                 btnEdit.Click += new RoutedEventHandler(btnEdit_Click);
 
                 StackPanel stackPanel = new StackPanel
@@ -184,6 +184,7 @@ namespace login_page.UI
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             StoremainView.txtcategoryName.Text = "";
+            StoremainView.category_id.Content = "";
             StoremainView.nameCategory.Visibility = Visibility.Hidden;
             StoremainView.AllCloseControls(2);
         }
@@ -199,7 +200,7 @@ namespace login_page.UI
 
                     MyButton btnDelete = sender as MyButton;
 
-                    int id = btnDelete.ProductCategory.Id;
+                    int id = btnDelete.Totalinfo.Id;
 
                     if (id != 0)
                     {
@@ -228,7 +229,7 @@ namespace login_page.UI
             {
                 MyButton btnDelete = sender as MyButton;
 
-                int id = btnDelete.ProductCategory.Id;
+                int id = btnDelete.Totalinfo.Id;
 
                 EditProductCategoryWindow editProductCategoryWindow = new EditProductCategoryWindow(this, id);
                 editProductCategoryWindow.ShowDialog();
@@ -246,11 +247,9 @@ namespace login_page.UI
             {
                 MyButton myButton = (MyButton)sender;
 
-                string name = myButton.Content.ToString();
-
-                StoremainView.txtcategoryName.Text = name;
+                StoremainView.txtcategoryName.Text = myButton.Totalinfo.Name;
+                StoremainView.category_id.Content = myButton.Totalinfo.Id;
                 StoremainView.nameCategory.Visibility = Visibility.Visible;
-                ProductSubCategoryView.Category_id = myButton.ProductCategory.Id;
                 StoremainView.AllCloseControls(2);
 
             }

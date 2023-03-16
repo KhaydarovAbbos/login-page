@@ -42,14 +42,11 @@ namespace login_page.UI
 
             dB.OpenConnection();
 
-            MySqlCommand command = new MySqlCommand("select * from products order by id desc", dB.GetConnection());
+            MySqlCommand command = new MySqlCommand($"select * from products where category_id = {StoremainView.category_id.Content} and sub_category_id = {StoremainView.sub_category_id.Content} and store_id = {StoremainView.store_id.Content} order by id desc", dB.GetConnection());
             mySqlDataAdapter.SelectCommand = command;
             mySqlDataAdapter.Fill(dtProducts);
 
             dB.CloseConnection();
-
-            
-
 
             #region Button add
             Border borderAdd = new Border
@@ -302,34 +299,17 @@ namespace login_page.UI
             try
             {
 
-                DB dB = new DB();
-                dB.OpenConnection();
-                DataTable dtCategoryId = new DataTable();
-                DataTable dtSubCategoryId = new DataTable();
-                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
-
-
-                MySqlCommand cmdCategory = new MySqlCommand($"select * from product_category where name = '{StoremainView.txtcategoryName.Text}'", dB.GetConnection());
-                MySqlCommand cmdSubCategory = new MySqlCommand($"select * from product_sub_category where name = '{StoremainView.txtSubCategoryName.Text}'", dB.GetConnection());
-
-                mySqlDataAdapter.SelectCommand = cmdCategory;
-                mySqlDataAdapter.Fill(dtCategoryId);
-
-                mySqlDataAdapter.SelectCommand = cmdSubCategory;
-                mySqlDataAdapter.Fill(dtSubCategoryId);
-
-                dB.CloseConnection();
-
                 ProductCategory category = new ProductCategory()
                 {
-                    Id = int.Parse(dtCategoryId.Rows[0]["id"].ToString()),
-                    Name = dtCategoryId.Rows[0]["name"].ToString()
+                    Id = int.Parse(StoremainView.category_id.Content.ToString()),
+                    Name = StoremainView.txtcategoryName.Text
                 };
 
-                ProductSubCategory subCategory = new ProductSubCategory()
+                ProductSubCategory subCategory = new ProductSubCategory
                 {
-                    Id = int.Parse(dtSubCategoryId.Rows[0]["id"].ToString()),
-                    Name = dtSubCategoryId.Rows[0]["name"].ToString()
+                    Id = int.Parse(StoremainView.sub_category_id.Content.ToString()),
+                    Name = StoremainView.txtSubCategoryName.Text,
+                    CategoryId = category.Id
                 };
 
                 AddProductWindow addProductWindow = new AddProductWindow(category, subCategory);
@@ -342,11 +322,6 @@ namespace login_page.UI
 
                 throw;
             }
-
-
-
-
-            
         }
     }
 

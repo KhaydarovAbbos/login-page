@@ -77,8 +77,8 @@ namespace login_page.UI
 
                 ///////////////////////////////////////////////
                 TotalInfo totalInfo = new TotalInfo();
-                totalInfo.store_id = dtShops.Rows[i]["id"].ToString();
-                totalInfo.store_name = dtShops.Rows[i]["name"].ToString();
+                totalInfo.Id = int.Parse(dtShops.Rows[i]["id"].ToString());
+                totalInfo.Name = dtShops.Rows[i]["name"].ToString();
                 ///////////////////////////////////////////////
 
                 Border border = new Border
@@ -114,6 +114,7 @@ namespace login_page.UI
                     Width = 200,
                     Height = 150
                 };
+                button.Totalinfo = totalInfo;
                 button.Click += new RoutedEventHandler(btnEnter_Click);
 
                 Grid grid = new Grid
@@ -121,7 +122,6 @@ namespace login_page.UI
                     ColumnDefinitions = { c1, c2 },
                     Children = { button }
                 };
-
 
                 MyButton btnDelete = new MyButton
                 {
@@ -184,15 +184,13 @@ namespace login_page.UI
 
         public class TotalInfo
         {
-            public string store_id { set; get; }
-            public string store_name { set; get; }
+            public int Id { set; get; }
+            public string Name { set; get; }
         }
 
         public class MyButton : Button
         {
             public TotalInfo Totalinfo { set; get; }
-            public ProductCategory ProductCategory { set; get; }
-
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -205,7 +203,7 @@ namespace login_page.UI
                 {
                     MyButton btnDelete = sender as MyButton;
 
-                    int id = int.Parse(btnDelete.Totalinfo.store_id);
+                    int id = btnDelete.Totalinfo.Id;
 
                     if (id != 0)
                     {
@@ -225,7 +223,6 @@ namespace login_page.UI
             {
                 MessageBox.Show(ex.Message.ToString(), "xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -234,7 +231,7 @@ namespace login_page.UI
             {
                 MyButton btnDelete = sender as MyButton;
 
-                int id = int.Parse(btnDelete.Totalinfo.store_id);
+                int id = btnDelete.Totalinfo.Id;
 
                 EditShopWindow editShop = new EditShopWindow();
                 editShop.WindowLoad(id, this);
@@ -256,6 +253,7 @@ namespace login_page.UI
                 string name = myButton.Content.ToString();
 
                 StoreMainView.Storename = name;
+                StoreMainView.StoreId = myButton.Totalinfo.Id.ToString();
 
                 MainView.AllCloseControls(2);
 

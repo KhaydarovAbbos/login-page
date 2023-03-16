@@ -112,7 +112,10 @@
                         <TextBlock Text="" x:Name="txtStoreName" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 0">
 
                         </TextBlock>
+                        <Label Width="0" Height="0" x:Name="store_id" />
                     </StackPanel>
+
+ 
                 </Border>
 
 
@@ -124,6 +127,8 @@
                         <TextBlock Text="" x:Name="txtcategoryName" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 0">
 
                         </TextBlock>
+
+                        <Label Width="0" Height="0" x:Name="category_id" />
                     </StackPanel>
                 </Border>
 
@@ -135,6 +140,8 @@
                         <TextBlock Text="" x:Name="txtSubCategoryName" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 0">
 
                         </TextBlock>
+
+                        <Label Width="0" Height="0" x:Name="sub_category_id" />
                     </StackPanel>
                 </Border>
 
