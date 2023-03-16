@@ -314,7 +314,19 @@ namespace login_page.UI
 
                 dB.CloseConnection();
 
-                AddProductWindow addProductWindow = new AddProductWindow(int.Parse(dtCategoryId.Rows[0]["id"].ToString()), int.Parse(dtSubCategoryId.Rows[0]["id"].ToString()));
+                ProductCategory category = new ProductCategory()
+                {
+                    Id = int.Parse(dtCategoryId.Rows[0]["id"].ToString()),
+                    Name = dtCategoryId.Rows[0]["name"].ToString()
+                };
+
+                ProductSubCategory subCategory = new ProductSubCategory()
+                {
+                    Id = int.Parse(dtSubCategoryId.Rows[0]["id"].ToString()),
+                    Name = dtSubCategoryId.Rows[0]["name"].ToString()
+                };
+
+                AddProductWindow addProductWindow = new AddProductWindow(category, subCategory);
                 addProductWindow.GetProductsView(this);
                 addProductWindow.ShowDialog();
 

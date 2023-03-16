@@ -49,11 +49,6 @@ namespace login_page.UI
         {
             try
             {
-                TextBox textbox = (TextBox)sender;
-
-                textbox.Text = string.Format("{0:#,##0.00}", double.Parse(textbox.Text));
-                int index = textbox.Text.IndexOf(".");
-                textbox.CaretIndex = index;
 
                 if (txtArrivalPrice.Text.Length == 0 || txtArrivalPrice.Text == "")
                     txtErrorArrivalPrice.Text = "Необходимый";
@@ -72,11 +67,6 @@ namespace login_page.UI
 
             try
             {
-                TextBox textbox = (TextBox)sender;
-
-                textbox.Text = string.Format("{0:#,##0.00}", double.Parse(textbox.Text));
-                int index = textbox.Text.IndexOf(".");
-                textbox.CaretIndex = index;
 
                 if (txtSellingPrice.Text.Length == 0 || txtSellingPrice.Text == "")
                     txtErrorSellingPrice.Text = "Необходимый";
@@ -93,13 +83,6 @@ namespace login_page.UI
         {
             try
             {
-                TextBox textbox = (TextBox)sender;
-
-                textbox.Text = string.Format("{0:#,##0.00}", double.Parse(textbox.Text));
-                int index = textbox.Text.IndexOf(".");
-                textbox.CaretIndex = index;
-
-
                 if (txtQuantity.Text.Length == 0 || txtQuantity.Text == "")
                     txtErrorQuantity.Text = "Необходимый";
                 else

@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:login_page.UI"
         mc:Ignorable="d"
-        Title="" Height="400" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
+        Title="" Height="530" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Grid>
 
         <StackPanel>
@@ -38,8 +38,52 @@
             <TextBlock x:Name="txtErrorName" FontSize="13" Width="200" Foreground="Red"/>
 
 
-
             <Grid Margin="0 7 0 0 ">
+
+                <TextBox 
+                    x:Name="txtCategory"
+                    Foreground="Black"
+                    Style="{StaticResource txtMain}"
+                    HorizontalAlignment="Center"
+                    Width="250" 
+                    Height="40"
+                    PreviewTextInput="NumberValidationTextBox" 
+                    Margin="0,0,0,0" 
+                    FontSize="18" 
+                    VerticalAlignment="Center" IsReadOnly="True"
+                    />
+
+                <Border Height="15" Margin="60 -45 0 0"  Background="White" Width="65" HorizontalAlignment="Left">
+
+                    <TextBlock Text="Категорий" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+
+            </Grid>
+
+            <Grid Margin="0 25 0 0 ">
+
+                <TextBox 
+                    x:Name="txtSubCategory"
+                    Foreground="Black"
+                    Style="{StaticResource txtMain}"
+                    HorizontalAlignment="Center"
+                    Width="250" 
+                    Height="40"
+                    PreviewTextInput="NumberValidationTextBox"  IsReadOnly="True"
+                    Margin="0,0,0,0" 
+                    FontSize="18" 
+                    VerticalAlignment="Center"
+                    />
+
+                <Border Height="15" Margin="60 -45 0 0"  Background="White" Width="90" HorizontalAlignment="Left">
+
+                    <TextBlock Text="Подкатегорий" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+
+            </Grid>
+
+
+            <Grid Margin="0 25 0 0 ">
 
                 <TextBox 
                     x:Name="txtArrivalPrice"
@@ -55,7 +99,7 @@
                     TextChanged="txtArrivalPrice_TextChanged"
                     />
 
-                <Border Height="15" Margin="60 -45 0 0"  Background="White" Width="100" HorizontalAlignment="Left">
+                <Border Height="15" Margin="60 -45 0 0"  Background="White" Width="95" HorizontalAlignment="Left">
 
                     <TextBlock Text="Себестоимость" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
