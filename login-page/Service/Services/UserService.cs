@@ -1,7 +1,10 @@
 ﻿using login_page.Entities.User;
 using login_page.Infrastructure.IRepository;
+using login_page.Infrastructure.Repository;
 using login_page.Service.Interfaces;
 using login_page.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace login_page.Service.Services
@@ -10,9 +13,9 @@ namespace login_page.Service.Services
     {
         internal IUserRepository UserRepository;
 
-        public UserService(IUserRepository userRepository)
+        public UserService()
         {
-            UserRepository = userRepository;
+            UserRepository = new UserRepository();
         }
 
         public Task<User> CheckUser(UserSignUpViewModel userSignUpViewModel)
@@ -33,7 +36,12 @@ namespace login_page.Service.Services
                 Password = userSignUpViewModel.Password,
             };
 
-            return UserRepository.CreateAsync(user);
+            return UserRepository.CreatAsync(user);
+        }
+
+        public Task<IEnumerable<User>> GetAllusers()
+        {
+            return UserRepository.GetAllAsync();
         }
     }
 }

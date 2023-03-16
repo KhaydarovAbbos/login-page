@@ -1,5 +1,7 @@
 ﻿using login_page.Entities.User;
 using login_page.Helper;
+using login_page.Service.Services;
+using login_page.ViewModels;
 using MaterialDesignThemes.Wpf;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
@@ -21,6 +23,7 @@ namespace login_page.UI
         MainWindow targetWindow = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
         public UserSignIn userSign { get; set; }
         IList<UserSignIn> userSignIns = new List<UserSignIn>();
+        UserService userService = new UserService();
 
         public SignInPage()
         {
@@ -57,6 +60,7 @@ namespace login_page.UI
             if (txtLogin.Text == "")
             {
                 txtLoginCheck.Text = "Необходимый";
+
                 txtLogin.Focus();
                 return;
             }
@@ -87,6 +91,13 @@ namespace login_page.UI
                 }
 
             }
+
+            UserLoginViewModel userLoginViewModel = new UserLoginViewModel()
+            {
+                Login = txtLogin.Text,
+                Password = txtPassword.Password
+                
+            };
 
             var response = await CheckUser();
 

@@ -6,8 +6,6 @@ namespace login_page.Infrastructure.Repository
 {
     public class Storerepository : GenericRepository<Shop>, IStorerepository
     {
-        public Storerepository(AppDbContext appDbContext) : base(appDbContext)
-        {
-        }
+        
     }
 }

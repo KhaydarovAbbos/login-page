@@ -6,8 +6,6 @@ namespace login_page.Infrastructure.Repository
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        public UserRepository(AppDbContext appDbContext) : base(appDbContext)
-        {
-        }
+        
     }
 }

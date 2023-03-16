@@ -2,6 +2,7 @@
 using login_page.Infrastructure.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -10,48 +11,58 @@ namespace login_page.Infrastructure.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        protected readonly AppDbContext _appDbContext;
-        internal DbSet<T> dbSet;
+        private AppDbContext _db;
 
-        public GenericRepository(AppDbContext appDbContext)
+        private DbSet<T> _dbSet;
+
+        public GenericRepository()
         {
-            _appDbContext = appDbContext;
-            dbSet = _appDbContext.Set<T>();
+            _db = new AppDbContext();
+            _dbSet = _db.Set<T>();
         }
 
-        public async Task<T> CreateAsync(T entity)
+
+        public async Task<T> CreatAsync(T entity)
         {
-            var entry = await dbSet.AddAsync(entity);
-            await _appDbContext.SaveChangesAsync();
+            var entry = await _dbSet.AddAsync(entity);
+
+            await _db.SaveChangesAsync();
+
             return entry.Entity;
         }
 
         public async Task<bool> DeleteAsync(Expression<Func<T, bool>> expression)
         {
-            var entity = await dbSet.FirstOrDefaultAsync(expression);
+            var entity = _dbSet.FirstOrDefault(expression);
 
             if (entity == null)
                 return false;
 
-            dbSet.Remove(entity);
+            _dbSet.Remove(entity);
+
+            await _db.SaveChangesAsync();
+
             return true;
         }
 
-        public async Task<IQueryable<T>> GetAllAsync(Expression<Func<T, bool>> expression = null)
+        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> expression = null)
         {
-            return expression == null ? dbSet : dbSet.Where(expression);
+            return expression == null ? _dbSet : _dbSet.Where(expression);
         }
 
-        public Task<T> GetAsync(Expression<Func<T, bool>> expression)
+        public async Task<T> GetAsync(Expression<Func<T, bool>> expression)
         {
-            return dbSet.FirstOrDefaultAsync(expression);
+            return await _dbSet.FirstOrDefaultAsync(expression);
         }
 
         public async Task<T> UpdateAsync(T entity)
         {
-            var entry = dbSet.Update(entity);
+            var updatedEntity = _dbSet.Update(entity);
 
-            return entry.Entity;
+            await _db.SaveChangesAsync();
+
+            return updatedEntity.Entity;
         }
+
     }
 }
