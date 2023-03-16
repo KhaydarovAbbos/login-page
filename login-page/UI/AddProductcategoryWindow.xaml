@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:login_page.UI"
         mc:Ignorable="d"
-        Title="" Height="250" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow">
+        Title="" Height="250" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Grid>
 
         <StackPanel>
