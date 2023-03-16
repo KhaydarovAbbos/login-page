@@ -84,7 +84,9 @@ namespace login_page.UI
                     Name = dtProducts.Rows[i]["name"].ToString(),
                     ArrivalPrice = double.Parse(dtProducts.Rows[i]["arrival_price"].ToString()),
                     Price = double.Parse(dtProducts.Rows[i]["selling_price"].ToString()),
-                    Quantity = double.Parse(dtProducts.Rows[i]["quantity"].ToString())
+                    Quantity = double.Parse(dtProducts.Rows[i]["quantity"].ToString()),
+                    Category = dtProducts.Rows[i]["category_id"].ToString(),
+                    SubCategory = dtProducts.Rows[i]["sub_category_id"].ToString()
 
                 };
 

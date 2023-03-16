@@ -157,6 +157,8 @@ namespace login_page.UI
             try
             {
 
+
+
                 if (txtQuantity.Text.Length == 0 || txtQuantity.Text == "")
                     txtErrorQuantity.Text = "Необходимый";
                 else
