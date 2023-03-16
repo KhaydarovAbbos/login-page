@@ -12,10 +12,12 @@ namespace login_page.UI
     public partial class AddProductSubCategoryWindow : Window
     {
         ProductSubCategoryView ProductubCategoryView;
-        public AddProductSubCategoryWindow(ProductSubCategoryView productSubCategoryView)
+        int CategoryId = 0;
+        public AddProductSubCategoryWindow(ProductSubCategoryView productSubCategoryView, int categoryId)
         {
             InitializeComponent();
             ProductubCategoryView = productSubCategoryView;
+            CategoryId = categoryId;
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
@@ -34,7 +36,7 @@ namespace login_page.UI
 
                 dB.OpenConnection();
 
-                MySqlCommand command = new MySqlCommand($"insert into product_sub_category(name)  values('{txtName.Text}')", dB.GetConnection());
+                MySqlCommand command = new MySqlCommand($"insert into product_sub_category(name, category_id)  values('{txtName.Text}', '{CategoryId}')", dB.GetConnection());
                 command.ExecuteNonQuery();
 
                 dB.CloseConnection();

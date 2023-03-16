@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using login_page.Entities.Products;
+using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.Windows;
@@ -190,6 +191,7 @@ namespace login_page.UI
         public class MyButton : Button
         {
             public TotalInfo Totalinfo { set; get; }
+            public ProductCategory ProductCategory { set; get; }
 
         }
 

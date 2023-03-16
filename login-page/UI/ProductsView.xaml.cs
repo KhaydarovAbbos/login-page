@@ -8,6 +8,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using login_page.Entities.Products;
+using System.Globalization;
 
 namespace login_page.UI
 {
@@ -31,6 +32,9 @@ namespace login_page.UI
             {
                 panel.Children.Clear();
             }
+
+            NumberFormatInfo numberFormatInfo = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+            numberFormatInfo.NumberGroupSeparator = " ";
 
             DB dB = new DB();
             DataTable dtProducts = new DataTable();
@@ -134,7 +138,7 @@ namespace login_page.UI
                 {
                     HorizontalAlignment = HorizontalAlignment.Left,
                     FontSize = 16,
-                    Text = $"Себестоимость : {string.Format("{0:#,##}", product.ArrivalPrice)}",
+                    Text = $"Себестоимость : {product.ArrivalPrice.ToString("#,##", numberFormatInfo)}",
                     Margin = new Thickness(10, 0, 0, 0)
                 };
 
@@ -142,7 +146,7 @@ namespace login_page.UI
                 {
                     HorizontalAlignment = HorizontalAlignment.Left,
                     FontSize = 16,
-                    Text = $"Цена : {string.Format("{0:#,##}", product.Price)}",
+                    Text = $"Цена : {product.Price.ToString("#,##", numberFormatInfo)}",
                     Margin = new Thickness(10, 0, 0, 0)
                 };
 
@@ -151,7 +155,7 @@ namespace login_page.UI
                     HorizontalAlignment = HorizontalAlignment.Left,
                     FontSize = 16,
                     
-                    Text = $"Количество : {string.Format("{0:#,##}", product.Quantity)}",
+                    Text = $"Количество : {product.Quantity.ToString("#,##", numberFormatInfo)}",
                     Margin = new Thickness(10, 0, 0, 0)
                 };
 

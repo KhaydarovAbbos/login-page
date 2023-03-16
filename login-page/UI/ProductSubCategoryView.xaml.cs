@@ -16,6 +16,7 @@ namespace login_page.UI
     public partial class ProductSubCategoryView : UserControl
     {
         StoreMainView StoremainView;
+        public static int Category_id;
 
         public ProductSubCategoryView()
         {
@@ -40,7 +41,7 @@ namespace login_page.UI
 
             dB.OpenConnection();
 
-            MySqlCommand command = new MySqlCommand("select * from product_sub_category order by id desc", dB.GetConnection());
+            MySqlCommand command = new MySqlCommand($"select * from product_sub_category where category_id={Category_id} order by id desc", dB.GetConnection());
             mySqlDataAdapter.SelectCommand = command;
             mySqlDataAdapter.Fill(dtShops);
 
@@ -258,7 +259,7 @@ namespace login_page.UI
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddProductSubCategoryWindow addProductcategory = new AddProductSubCategoryWindow(this);
+            AddProductSubCategoryWindow addProductcategory = new AddProductSubCategoryWindow(this, Category_id);
             addProductcategory.ShowDialog();
         }
     }
