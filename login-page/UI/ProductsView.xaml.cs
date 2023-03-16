@@ -87,11 +87,6 @@ namespace login_page.UI
 
                 };
 
-                ///////////////////////////////////////////////
-                //TotalInfo totalInfo = new TotalInfo();
-                //totalInfo.store_id = dtShops.Rows[i]["id"].ToString();
-                //totalInfo.store_name = dtShops.Rows[i]["name"].ToString();
-                ///////////////////////////////////////////////
 
                 Border border = new Border
                 {
@@ -283,7 +278,7 @@ namespace login_page.UI
 
                 Product product = btnDelete.Product;
 
-                EditProductWindow editProductWindow = new EditProductWindow(product);
+                EditProductWindow editProductWindow = new EditProductWindow(product, this);
                 editProductWindow.ShowDialog();
 
             }
