@@ -47,27 +47,67 @@ namespace login_page.UI
 
         private void txtArrivalPrice_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtArrivalPrice.Text.Length == 0 || txtArrivalPrice.Text == "")
-                txtErrorArrivalPrice.Text = "Необходимый";
-            else
-                txtErrorArrivalPrice.Text = "";
+            try
+            {
+                TextBox textbox = (TextBox)sender;
+
+                textbox.Text = string.Format("{0:#,##0.00}", double.Parse(textbox.Text));
+                int index = textbox.Text.IndexOf(".");
+                textbox.CaretIndex = index;
+
+                if (txtArrivalPrice.Text.Length == 0 || txtArrivalPrice.Text == "")
+                    txtErrorArrivalPrice.Text = "Необходимый";
+                else
+                    txtErrorArrivalPrice.Text = "";
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         private void txtSellingPrice_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            if (txtSellingPrice.Text.Length == 0 || txtSellingPrice.Text == "")
-                txtErrorSellingPrice.Text = "Необходимый";
-            else
-                txtErrorSellingPrice.Text = "";
+            try
+            {
+                TextBox textbox = (TextBox)sender;
+
+                textbox.Text = string.Format("{0:#,##0.00}", double.Parse(textbox.Text));
+                int index = textbox.Text.IndexOf(".");
+                textbox.CaretIndex = index;
+
+                if (txtSellingPrice.Text.Length == 0 || txtSellingPrice.Text == "")
+                    txtErrorSellingPrice.Text = "Необходимый";
+                else
+                    txtErrorSellingPrice.Text = "";
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void txtQuantity_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtQuantity.Text.Length == 0 || txtQuantity.Text == "")
-                txtErrorQuantity.Text = "Необходимый";
-            else
-                txtErrorQuantity.Text = "";
+            try
+            {
+                TextBox textbox = (TextBox)sender;
+
+                textbox.Text = string.Format("{0:#,##0.00}", double.Parse(textbox.Text));
+                int index = textbox.Text.IndexOf(".");
+                textbox.CaretIndex = index;
+
+
+                if (txtQuantity.Text.Length == 0 || txtQuantity.Text == "")
+                    txtErrorQuantity.Text = "Необходимый";
+                else
+                    txtErrorQuantity.Text = "";
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
@@ -100,7 +140,7 @@ namespace login_page.UI
             DB dB = new DB();
             dB.OpenConnection();
 
-            MySqlCommand command = new MySqlCommand($"update products set name = '{txtName.Text}', arrival_price = {txtArrivalPrice.Text}, selling_price = {txtSellingPrice.Text}, quantity = {txtQuantity.Text}  where id = {productId}", dB.GetConnection());
+            MySqlCommand command = new MySqlCommand($"update products set name = '{txtName.Text}', arrival_price = {double.Parse(txtArrivalPrice.Text)}, selling_price = {double.Parse(txtSellingPrice.Text)}, quantity = {double.Parse(txtQuantity.Text)}  where id = {productId}", dB.GetConnection());
             command.ExecuteNonQuery();
 
             dB.CloseConnection();
@@ -109,6 +149,33 @@ namespace login_page.UI
 
             this.Close();
 
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                TextBox textbox = (TextBox)sender;
+
+                char ch = e.Text[0];
+
+                if ((Char.IsDigit(ch) || ch == '.'))
+
+                {
+
+                    if (ch == '.' && textbox.Text.Contains('.'))
+
+                        e.Handled = true;
+                }
+
+                else
+                    e.Handled = true;
+
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }

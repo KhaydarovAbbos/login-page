@@ -70,7 +70,7 @@ namespace login_page.UI
             DB dB = new DB();
             dB.OpenConnection();
 
-            MySqlCommand command = new MySqlCommand($"insert into products(name, arrival_price, selling_price, quantity, category_id, sub_category_id)  values('{txtName.Text}', {txtArrivalPrice.Text}, {txtSellingPrice.Text}, {txtQuantity.Text}, {CategoryId}, {SubCategoryId})", dB.GetConnection());
+            MySqlCommand command = new MySqlCommand($"insert into products(name, arrival_price, selling_price, quantity, category_id, sub_category_id)  values('{txtName.Text}', {double.Parse(txtArrivalPrice.Text)}, {double.Parse(txtSellingPrice.Text)}, {double.Parse(txtQuantity.Text)}, {CategoryId}, {SubCategoryId})", dB.GetConnection());
             command.ExecuteNonQuery();
 
             dB.CloseConnection();

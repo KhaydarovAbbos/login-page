@@ -16,6 +16,7 @@ namespace login_page.UI
     /// </summary>
     public partial class ProductsView : UserControl
     {
+
         StoreMainView StoremainView;
         Product product;
 
@@ -131,7 +132,7 @@ namespace login_page.UI
                 {
                     HorizontalAlignment = HorizontalAlignment.Left,
                     FontSize = 16,
-                    Text = $"Цена прибытия : {product.ArrivalPrice}",
+                    Text = $"Себестоимость : {string.Format("{0:#,##}", product.ArrivalPrice)}",
                     Margin = new Thickness(10, 0, 0, 0)
                 };
 
@@ -139,7 +140,7 @@ namespace login_page.UI
                 {
                     HorizontalAlignment = HorizontalAlignment.Left,
                     FontSize = 16,
-                    Text = $"Цена : {product.Price}",
+                    Text = $"Цена : {string.Format("{0:#,##}", product.Price)}",
                     Margin = new Thickness(10, 0, 0, 0)
                 };
 
@@ -147,7 +148,8 @@ namespace login_page.UI
                 {
                     HorizontalAlignment = HorizontalAlignment.Left,
                     FontSize = 16,
-                    Text = $"Количество : {product.Quantity}",
+                    
+                    Text = $"Количество : {string.Format("{0:#,##}", product.Quantity)}",
                     Margin = new Thickness(10, 0, 0, 0)
                 };
 

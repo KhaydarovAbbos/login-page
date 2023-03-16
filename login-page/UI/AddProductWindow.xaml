@@ -57,7 +57,7 @@
 
                 <Border Height="15" Margin="60 -45 0 0"  Background="White" Width="100" HorizontalAlignment="Left">
 
-                    <TextBlock Text="Цена прибытия" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="Себестоимость" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
 
             </Grid>
