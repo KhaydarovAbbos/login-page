@@ -6,42 +6,36 @@
         xmlns:local="clr-namespace:login_page.UI"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="" Height="300" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow">
+        Title="" Height="250" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow">
     <Grid>
 
         <StackPanel>
-            <Border Width="258" 
-                Height="40" 
-                Margin="10 80 10 0"
-                BorderThickness="1" 
-                BorderBrush="#E6E6E6" 
-                CornerRadius="20" 
-                Background="#E6E6E6">
+            <Grid>
 
-                <Grid>
-                    <StackPanel Orientation="Horizontal">
+                <TextBox 
+                    x:Name="txtName"
+                    materialDesign:HintAssist.Hint="Имя" 
+                    Foreground="Black"
+                    Style="{StaticResource txtMain}"
+                    Width="250" 
+                    Margin="0,60,0,0" 
+                    FontSize="18" 
+                    VerticalAlignment="Center"
+                    TextChanged="txtName_TextChanged"
+                />
 
-                        <TextBox 
-                            x:Name="txtName"
-                            materialDesign:HintAssist.Hint="Имя" 
-                            Foreground="Black"
-                            Style="{StaticResource MaterialDesignTextBox}"
-                            Width="200" 
-                            Margin="10,0,0,0" 
-                            FontSize="18" 
-                            VerticalAlignment="Center"
-                            TextChanged="txtName_TextChanged"
-                                />
+                <Border Height="15" Margin="60 20 0 0"  Background="White" Width="30" HorizontalAlignment="Left">
 
-                    </StackPanel>
-                </Grid>
-            </Border>
+                    <TextBlock Text="Имя" FontSize="13" HorizontalAlignment="Center"/>
+                </Border>
+
+            </Grid>
 
             <TextBlock x:Name="txtError" FontSize="13" Width="200" Foreground="Red"/>
 
             <Button x:Name="BtnAdd" 
                     Click="BtnAdd_Click" Width="258"
-                    Margin="0 40 0 0" 
+                    Margin="0 30 0 0" 
                     Content="Создавать" 
                     Style="{StaticResource Button}" VerticalAlignment="Bottom">
 

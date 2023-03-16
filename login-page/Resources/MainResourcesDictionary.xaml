@@ -164,7 +164,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="TextBox" x:Key="txtKurs">
+    <Style TargetType="TextBox" x:Key="txtMain">
         <Setter Property="SnapsToDevicePixels"
                                         Value="True" />
         <Setter Property="OverridesDefaultStyle"
@@ -190,7 +190,7 @@
                     <Grid>
                         <Border Name="Border"
                             CornerRadius="10"
-                            Padding="10 5 10 5"
+                            Padding="20 5 10 5"
                             BorderThickness="1">
 
                             <Border.Background>
