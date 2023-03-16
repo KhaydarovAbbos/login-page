@@ -104,6 +104,8 @@ namespace login_page.UI
             if (response.Item1 && response.Item2)
             {
                 targetWindow.AllCloseControls(3);
+
+                txtError.Text = "";
             }
             else if (response.Item1 && !response.Item2)
             {
@@ -171,7 +173,7 @@ namespace login_page.UI
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.Message, "Xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
+                //MessageBox.Show(ex.Message, "Xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
                 return (false, false);
             }
 
