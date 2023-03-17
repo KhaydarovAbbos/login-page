@@ -108,11 +108,15 @@ namespace login_page.UI
                     BorderBrush = Brushes.Transparent,
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    Content = $"{dtShops.Rows[i]["name"]}",
-                    FontWeight = FontWeights.Bold,
-                    FontSize = 25,
                     Width = 200,
-                    Height = 150
+                    Height = 150,
+                    Content = new TextBlock
+                    {
+                        Text = totalInfo.Name,
+                        FontSize = 25,
+                        FontWeight = FontWeights.Bold,
+                        TextWrapping = TextWrapping.Wrap
+                    }
                 };
                 button.Totalinfo = totalInfo;
                 button.Click += new RoutedEventHandler(btnEnter_Click);
@@ -250,7 +254,8 @@ namespace login_page.UI
             {
                 MyButton myButton = (MyButton)sender;
 
-                string name = myButton.Content.ToString();
+                TextBlock textBlock = (TextBlock)myButton.Content;
+                string name = textBlock.Text;
 
                 StoreMainView.Storename = name;
                 StoreMainView.StoreId = myButton.Totalinfo.Id.ToString();

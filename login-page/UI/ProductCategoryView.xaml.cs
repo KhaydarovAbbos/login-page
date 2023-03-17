@@ -110,11 +110,15 @@ namespace login_page.UI
                     BorderBrush = Brushes.Transparent,
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    Content = totalInfo.Name,
-                    FontWeight = FontWeights.Bold,
-                    FontSize = 25,
                     Width = 200,
-                    Height = 150
+                    Height = 150,
+                    Content = new TextBlock
+                    {
+                        Text = totalInfo.Name,
+                        FontSize = 25,
+                        FontWeight = FontWeights.Bold,
+                        TextWrapping = TextWrapping.Wrap
+                    }
                 };
                 button.Totalinfo = totalInfo;
                 button.Click += new RoutedEventHandler(btnEnter_Click);
