@@ -120,6 +120,7 @@ namespace login_page.UI
 
             targetWindow.RemoveEffect();
             targetWindow.giff.Visibility = Visibility.Hidden;
+            userSign = null;
         }
 
         private async Task<(bool, bool)> CheckUser()

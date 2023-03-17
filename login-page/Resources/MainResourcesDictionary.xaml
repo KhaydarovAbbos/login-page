@@ -260,7 +260,15 @@
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
+            
+            
         </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="Text" Value="">
+                <Setter Property="BorderBrush" Value="Red"></Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="TextBox" x:Key="txtLogin">
