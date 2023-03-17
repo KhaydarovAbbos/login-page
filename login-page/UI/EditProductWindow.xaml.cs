@@ -170,38 +170,8 @@ namespace login_page.UI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            DB dB = new DB();
-            dB.OpenConnection();
-            DataTable dtCategoryId = new DataTable();
-            DataTable dtSubCategoryId = new DataTable();
-            MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter();
-
-
-            MySqlCommand cmdCategory = new MySqlCommand($"select * from product_category where id = '{Product.Category}'", dB.GetConnection());
-            MySqlCommand cmdSubCategory = new MySqlCommand($"select * from product_sub_category where id = '{Product.SubCategory}'", dB.GetConnection());
-
-            mySqlDataAdapter.SelectCommand = cmdCategory;
-            mySqlDataAdapter.Fill(dtCategoryId);
-
-            mySqlDataAdapter.SelectCommand = cmdSubCategory;
-            mySqlDataAdapter.Fill(dtSubCategoryId);
-
-            dB.CloseConnection();
-
-            ProductCategory category = new ProductCategory()
-            {
-                Id = int.Parse(dtCategoryId.Rows[0]["id"].ToString()),
-                Name = dtCategoryId.Rows[0]["name"].ToString()
-            };
-
-            ProductSubCategory subCategory = new ProductSubCategory()
-            {
-                Id = int.Parse(dtSubCategoryId.Rows[0]["id"].ToString()),
-                Name = dtSubCategoryId.Rows[0]["name"].ToString()
-            };
-
-            txtCategory.Text = category.Name;
-            txtSubCategory.Text = subCategory.Name;
+            txtCategory.Text = Productsview.StoremainView.txtcategoryName.Text;
+            txtSubCategory.Text = Productsview.StoremainView.txtSubCategoryName.Text;
         }
     }
 }

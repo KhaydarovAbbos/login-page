@@ -18,7 +18,7 @@ namespace login_page.UI
     public partial class ProductsView : UserControl
     {
 
-        StoreMainView StoremainView;
+        public StoreMainView StoremainView;
         Product product;
 
         public ProductsView()
@@ -42,7 +42,7 @@ namespace login_page.UI
 
             dB.OpenConnection();
 
-            MySqlCommand command = new MySqlCommand($"select * from products where category_id = {StoremainView.category_id.Content} and sub_category_id = {StoremainView.sub_category_id.Content} and store_id = {StoremainView.store_id.Content} order by id desc", dB.GetConnection());
+            MySqlCommand command = new MySqlCommand($"select * from products where sub_category_id = {StoremainView.sub_category_id.Content} and store_id = {StoremainView.store_id.Content} order by id desc", dB.GetConnection());
             mySqlDataAdapter.SelectCommand = command;
             mySqlDataAdapter.Fill(dtProducts);
 
@@ -86,9 +86,7 @@ namespace login_page.UI
                     ArrivalPrice = double.Parse(dtProducts.Rows[i]["arrival_price"].ToString()),
                     Price = double.Parse(dtProducts.Rows[i]["selling_price"].ToString()),
                     Quantity = double.Parse(dtProducts.Rows[i]["quantity"].ToString()),
-                    Category = dtProducts.Rows[i]["category_id"].ToString(),
                     SubCategory = dtProducts.Rows[i]["sub_category_id"].ToString()
-
                 };
 
 

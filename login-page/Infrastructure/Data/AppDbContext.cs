@@ -16,7 +16,7 @@ namespace login_page.Infrastructure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server = localhost; username = root; database=login_page");
+            optionsBuilder.UseNpgsql("Host = localhost; database=StoreAppDB; Port=3306; User Id = root; ");
         }
 
     }

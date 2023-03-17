@@ -72,6 +72,9 @@ namespace login_page.UI
         private void main_MouseUp(object sender, MouseButtonEventArgs e)
         {
             AllCloseControls(-1);
+
+            txtStoreName.Text = "";
+            store_id.Content = "0";
         }
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)

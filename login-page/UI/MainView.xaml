@@ -25,11 +25,11 @@
                 
                 <StackPanel>
 
-                <Button Width="40" Height="30" x:Name="btnMenu" Margin="10 5 0 5" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Background="Transparent" BorderBrush="Gray" Click="btnMenu_Click">
+                <Button Width="40" Height="30" x:Name="btnMenu" Margin="10 5 0 5" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Background="Transparent" BorderBrush="Black" Click="btnMenu_Click">
                     <Button.Content>
                         <materialDesign:PackIcon  
                                     Kind="Menu" Margin="0 0 0 0"
-                                    Foreground="Gray" 
+                                    Foreground="Black" 
                                     VerticalAlignment="Center" 
                                     Width="40" Height="30"
                                 />
@@ -45,7 +45,7 @@
 
                                 <materialDesign:PackIcon  
                                     Kind="Shop"
-                                    Foreground="Gray" 
+                                    Foreground="Black" 
                                     VerticalAlignment="Center" 
                                     Margin="0,00,0,0" 
                                     Height="35" Width="35"
@@ -65,7 +65,7 @@
 
                                 <materialDesign:PackIcon  
                                     Kind="Settings"
-                                    Foreground="Gray" 
+                                    Foreground="Black" 
                                     VerticalAlignment="Center" 
                                     Margin="0,00,0,0" 
                                     Height="35" Width="35"
@@ -89,7 +89,7 @@
 
                                 <materialDesign:PackIcon  
                                     Kind="ExitToApp"
-                                    Foreground="Gray" 
+                                    Foreground="Black" 
                                     VerticalAlignment="Center" 
                                     Margin="0,00,0,0" 
                                     Height="35" Width="35"

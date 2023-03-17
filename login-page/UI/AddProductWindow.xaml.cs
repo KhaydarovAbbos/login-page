@@ -75,7 +75,7 @@ namespace login_page.UI
             DB dB = new DB();
             dB.OpenConnection();
 
-            MySqlCommand command = new MySqlCommand($"insert into products(name, arrival_price, selling_price, quantity, category_id, sub_category_id)  values('{txtName.Text}', {double.Parse(txtArrivalPrice.Text)}, {double.Parse(txtSellingPrice.Text)}, {double.Parse(txtQuantity.Text)}, {Productcategory.Id}, {ProductSubcategory.Id})", dB.GetConnection());
+            MySqlCommand command = new MySqlCommand($"insert into products(name, arrival_price, selling_price, quantity, sub_category_id, store_id)  values('{txtName.Text}', {double.Parse(txtArrivalPrice.Text)}, {double.Parse(txtSellingPrice.Text)}, {double.Parse(txtQuantity.Text)},  {ProductSubcategory.Id}, {Productsview.StoremainView.store_id.Content})", dB.GetConnection());
             command.ExecuteNonQuery();
 
             dB.CloseConnection();
