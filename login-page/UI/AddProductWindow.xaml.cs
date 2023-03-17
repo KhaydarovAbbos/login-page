@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -71,8 +72,20 @@ namespace login_page.UI
                 txtQuantity.Focus();
                 return;
             }
-
-
+            if (autoBarcodeGrid.Visibility == Visibility.Visible)
+            {
+                byte[] encoded = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(txtName.Text));
+                var value = BitConverter.ToUInt32(encoded, 0) % 100000;
+                //txtBarcode.Text = txtName.Text[0].ToString() + value.ToString();
+                txtBarcode.Text = value.ToString();
+            }
+            if (barcodeGrid.Visibility == Visibility.Visible)
+            {
+                txtErrorBarocde.Text = "Необходимый";
+                txtBarcode.Focus();
+                return;
+            }
+            
             DB dB = new DB();
             dB.OpenConnection();
 
@@ -149,7 +162,6 @@ namespace login_page.UI
                 char ch = e.Text[0];
 
                 if ((Char.IsDigit(ch) || ch == '.'))
-
                 {
 
                     if (ch == '.' && textbox.Text.Contains('.'))
@@ -210,14 +222,38 @@ namespace login_page.UI
         {
             if (txtName.Text != "")
             {
-                byte[] encoded = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(txtName.Text));
-                var value = BitConverter.ToUInt32(encoded, 0) % 100000;
-                txtBarcode.Text = txtName.Text[0].ToString() + value.ToString();
+                
             }
             else
             {
                 txtName_TextChanged(null, null);
             }
+        }
+
+
+        private void ckBarcode_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txtBarcode.Clear();
+            txtBarcode.Focus();
+
+            autoBarcodeGrid.Visibility = Visibility.Visible;
+            barcodeGrid.Visibility = Visibility.Hidden;
+
+            ckAutoBarcode.IsChecked = false;
+            txtErrorBarocde.Text = "";
+        }
+
+        private void txtBarcode_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void ckAutoBarcode_Checked(object sender, RoutedEventArgs e)
+        {
+            autoBarcodeGrid.Visibility = Visibility.Hidden;
+            barcodeGrid.Visibility = Visibility.Visible;
+            ckBarcode.IsChecked = true;
         }
     }
 }
