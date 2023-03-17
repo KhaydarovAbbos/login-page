@@ -84,7 +84,7 @@ namespace login_page.UI
 
         private void exit_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Mainwindow.AllCloseControls(3);
+            Mainwindow.AllCloseControls(1);
 
         }
     }
