@@ -54,6 +54,9 @@ namespace login_page.UI
                 productcategory_view.Visibility = Visibility.Visible;
                 productcategory_view.GetMainView(this);
                 productcategory_view.WindowLoad();
+
+                nameCategory.Visibility = Visibility.Hidden;
+                nameSubCategory.Visibility = Visibility.Hidden;
             }
             if (i == 2)
             {

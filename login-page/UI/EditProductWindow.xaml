@@ -6,13 +6,13 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:login_page.UI"
         mc:Ignorable="d"
-        Title="" Height="530" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="" Height="550" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
 
         <StackPanel>
 
 
-            <Grid Margin="0 30 0 0 ">
+            <Grid Margin="0 20 0 0 ">
 
                 <StackPanel Orientation="Horizontal">
 
@@ -58,7 +58,7 @@
             </Grid>
 
 
-            <Grid>
+            <Grid Margin="0 10 0 0">
 
                 <TextBox 
                     x:Name="txtName"
@@ -68,13 +68,13 @@
                     Width="250"
                     Height="40"
                     HorizontalAlignment="Center"
-                    Margin="0, 30,0,0" 
+                    Margin="0, 0,0,0" 
                     FontSize="18" 
                     VerticalAlignment="Center"
                     TextChanged="txtName_TextChanged"
                 />
 
-                <Border Height="15" Margin="60 -15 0 0"  Background="White" Width="30" HorizontalAlignment="Left">
+                <Border Height="15" Margin="60 -45 0 0"  Background="White" Width="30" HorizontalAlignment="Left">
 
                     <TextBlock Text="Имя" FontSize="13" HorizontalAlignment="Center"/>
                 </Border>
@@ -82,6 +82,56 @@
             </Grid>
 
             <TextBlock x:Name="txtErrorName" FontSize="13" Width="200" Foreground="Red"/>
+
+            <Grid Margin="0 10 0 0 ">
+
+                <TextBox 
+                    x:Name="txtBarcode"
+                    Foreground="Black"
+                    Style="{StaticResource txtMain}"
+                    HorizontalAlignment="Center"
+                    Width="250" 
+                    Height="40"
+                    Margin="0,0,0,0" 
+                    FontSize="18" 
+                    VerticalAlignment="Center"
+                    TextChanged="txtBarcode_TextChanged"
+                />
+
+                <Border Height="15" Margin="60 -45 0 0"  Background="White" Width="70" HorizontalAlignment="Left">
+
+                    <TextBlock Text="Штрих-код" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+
+
+                <materialDesign:PackIcon  
+                        Kind="Barcode"
+                        Foreground="Black" 
+                        VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                        Margin="210,00,0,0" 
+                        Width="40" 
+                        MouseUp="PackIcon_MouseUp"
+                        Height="40"
+                    >
+
+                    <materialDesign:PackIcon.Style>
+                        <Style TargetType="materialDesign:PackIcon">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </materialDesign:PackIcon.Style>
+
+                </materialDesign:PackIcon>
+
+
+
+
+            </Grid>
+            <TextBlock x:Name="txtErrorBarocde" FontSize="13" Width="200" Foreground="Red"/>
 
             <Grid Margin="0 10 0 0 ">
 

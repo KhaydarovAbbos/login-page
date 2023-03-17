@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -36,6 +37,7 @@ namespace login_page.UI
             txtQuantity.Text = product.Quantity.ToString();
             txtSellingPrice.Text = product.Price.ToString();
             txtArrivalPrice.Text = product.ArrivalPrice.ToString();
+            txtBarcode.Text = product.Barcode.ToString();
             Productsview = productsview;
             Product = product;
         }
@@ -126,11 +128,17 @@ namespace login_page.UI
                 txtQuantity.Focus();
                 return;
             }
+            if (txtBarcode.Text == "")
+            {
+                txtErrorBarocde.Text = "Необходимый";
+                txtBarcode.Focus();
+                return;
+            }
 
             DB dB = new DB();
             dB.OpenConnection();
 
-            MySqlCommand command = new MySqlCommand($"update products set name = '{txtName.Text}', arrival_price = {double.Parse(txtArrivalPrice.Text)}, selling_price = {double.Parse(txtSellingPrice.Text)}, quantity = {double.Parse(txtQuantity.Text)}  where id = {productId}", dB.GetConnection());
+            MySqlCommand command = new MySqlCommand($"update products set name = '{txtName.Text}', arrival_price = {double.Parse(txtArrivalPrice.Text)}, selling_price = {double.Parse(txtSellingPrice.Text)}, quantity = {double.Parse(txtQuantity.Text)}, barcode = '{txtBarcode.Text}'  where id = {productId}", dB.GetConnection());
             command.ExecuteNonQuery();
 
             dB.CloseConnection();
@@ -172,6 +180,40 @@ namespace login_page.UI
         {
             txtCategory.Text = Productsview.StoremainView.txtcategoryName.Text;
             txtSubCategory.Text = Productsview.StoremainView.txtSubCategoryName.Text;
+        }
+
+        private void txtBarcode_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtBarcode.Text.Length == 0 || txtBarcode.Text == "")
+                {
+                    txtErrorBarocde.Text = "Необходимый";
+                    txtBarcode.Focus();
+                }
+                else
+                {
+                    txtErrorBarocde.Text = "";
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void PackIcon_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (txtName.Text != "")
+            {
+                byte[] encoded = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(txtName.Text));
+                var value = BitConverter.ToUInt32(encoded, 0) % 100000;
+                txtBarcode.Text = txtName.Text[0].ToString() + value.ToString();
+            }
+            else
+            {
+                txtName_TextChanged(null, null);
+            }
         }
     }
 }
