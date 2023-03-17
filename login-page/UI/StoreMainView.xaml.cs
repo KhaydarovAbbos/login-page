@@ -47,7 +47,7 @@ namespace login_page.UI
                 Mainwindow.AllCloseControls(3);
 
                 nameCategory.Visibility = Visibility.Hidden;
-                nameSubCategory.Visibility = Visibility.Hidden; 
+                nameSubCategory.Visibility = Visibility.Hidden;
             }
             if (i == 1)
             {

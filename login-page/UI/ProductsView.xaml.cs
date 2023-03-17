@@ -1,14 +1,13 @@
-﻿using MySql.Data.MySqlClient;
-using System.Data;
+﻿using login_page.Entities.Products;
+using MySql.Data.MySqlClient;
 using System;
+using System.Data;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using static login_page.UI.ShopView;
-using System.Windows.Media.Imaging;
 using System.Windows.Media;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using login_page.Entities.Products;
-using System.Globalization;
+using System.Windows.Media.Imaging;
+using static login_page.UI.ShopView;
 
 namespace login_page.UI
 {
@@ -150,14 +149,14 @@ namespace login_page.UI
                 {
                     HorizontalAlignment = HorizontalAlignment.Left,
                     FontSize = 16,
-                    
+
                     Text = $"Количество : {product.Quantity.ToString("#,##", numberFormatInfo)}",
                     Margin = new Thickness(10, 0, 0, 0)
                 };
 
                 StackPanel stackPanelRow1 = new StackPanel
                 {
-                    Children = { txtProductName, txtArrivalPrice , txtSellingPrice, txtQuantity}
+                    Children = { txtProductName, txtArrivalPrice, txtSellingPrice, txtQuantity }
                 };
                 #endregion
 
@@ -219,7 +218,7 @@ namespace login_page.UI
                 #endregion
 
                 Grid.SetColumn(stackPanel, 1);
-               
+
                 grid.Children.Add(stackPanel);
                 border.Child = grid;
 
@@ -246,8 +245,8 @@ namespace login_page.UI
             try
             {
                 var result = MessageBox.Show("Вы уверены, что хотите удалить", "Осторожность", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                
-                if (result == MessageBoxResult.Yes) 
+
+                if (result == MessageBoxResult.Yes)
                 {
                     ProductButton btnDelete = sender as ProductButton;
 

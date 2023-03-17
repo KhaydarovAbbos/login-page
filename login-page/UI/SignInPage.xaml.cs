@@ -74,13 +74,13 @@ namespace login_page.UI
             targetWindow.SetEffect();
             targetWindow.giff.Visibility = Visibility.Visible;
 
-            
+
 
             UserLoginViewModel userLoginViewModel = new UserLoginViewModel()
             {
                 Login = txtLogin.Text,
                 Password = txtPassword.Password
-                
+
             };
 
             var response = await CheckUser();

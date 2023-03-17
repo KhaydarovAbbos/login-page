@@ -1,11 +1,8 @@
-﻿using login_page.Entities.Products;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using static login_page.UI.ShopView;
@@ -112,7 +109,8 @@ namespace login_page.UI
                     HorizontalAlignment = HorizontalAlignment.Center,
                     Width = 200,
                     Height = 150,
-                    Content = new TextBlock { 
+                    Content = new TextBlock
+                    {
                         Text = totalInfo.Name,
                         FontSize = 25,
                         FontWeight = FontWeights.Bold,
