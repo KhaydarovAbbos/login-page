@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -75,7 +76,7 @@ namespace login_page.UI
             DB dB = new DB();
             dB.OpenConnection();
 
-            MySqlCommand command = new MySqlCommand($"insert into products(name, arrival_price, selling_price, quantity, sub_category_id, store_id)  values('{txtName.Text}', {double.Parse(txtArrivalPrice.Text)}, {double.Parse(txtSellingPrice.Text)}, {double.Parse(txtQuantity.Text)},  {ProductSubcategory.Id}, {Productsview.StoremainView.store_id.Content})", dB.GetConnection());
+            MySqlCommand command = new MySqlCommand($"insert into products(name, arrival_price, selling_price, quantity, sub_category_id, store_id, barcode)  values('{txtName.Text}', {double.Parse(txtArrivalPrice.Text)}, {double.Parse(txtSellingPrice.Text)}, {double.Parse(txtQuantity.Text)},  {ProductSubcategory.Id}, {Productsview.StoremainView.store_id.Content}, '{txtBarcode.Text}')", dB.GetConnection());
             command.ExecuteNonQuery();
 
             dB.CloseConnection();
@@ -88,9 +89,14 @@ namespace login_page.UI
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txtName.Text.Length == 0 || txtName.Text == "")
+            {
                 txtErrorName.Text = "Необходимый";
+                txtName.Focus();
+            }
             else
+            {
                 txtErrorName.Text = "";
+            }
         }
 
         private void txtArrivalPrice_TextChanged(object sender, TextChangedEventArgs e)
@@ -98,15 +104,19 @@ namespace login_page.UI
             try
             {
                 if (txtArrivalPrice.Text.Length == 0 || txtArrivalPrice.Text == "")
+                {
                     txtErrorArrivalPrice.Text = "Необходимый";
+                    txtArrivalPrice.Focus();
+                }
                 else
+                {
                     txtErrorArrivalPrice.Text = "";
+                }
             }
             catch (Exception)
             {
 
             }
-            
         }
 
         private void txtSellingPrice_TextChanged(object sender, TextChangedEventArgs e)
@@ -114,11 +124,15 @@ namespace login_page.UI
 
             try
             {
-
                 if (txtSellingPrice.Text.Length == 0 || txtSellingPrice.Text == "")
+                {
                     txtErrorSellingPrice.Text = "Необходимый";
+                    txtSellingPrice.Focus();
+                }
                 else
+                {
                     txtErrorSellingPrice.Text = "";
+                }
             }
             catch (Exception)
             {
@@ -157,14 +171,52 @@ namespace login_page.UI
         {
             try
             {
-
                 if (txtQuantity.Text.Length == 0 || txtQuantity.Text == "")
+                {
                     txtErrorQuantity.Text = "Необходимый";
+                    txtQuantity.Focus();
+                }
                 else
+                {
                     txtErrorQuantity.Text = "";
+                }
             }
             catch (Exception)
             {
+            }
+        }
+
+        private void txtBarcode_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtBarcode.Text.Length == 0 || txtBarcode.Text == "")
+                {
+                    txtErrorBarocde.Text = "Необходимый";
+                    txtBarcode.Focus();
+                }
+                else
+                {
+                    txtErrorBarocde.Text = "";
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void PackIcon_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (txtName.Text != "")
+            {
+                byte[] encoded = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(txtName.Text));
+                var value = BitConverter.ToUInt32(encoded, 0) % 100000;
+                txtBarcode.Text = txtName.Text[0].ToString() + value.ToString();
+            }
+            else
+            {
+                txtName_TextChanged(null, null);
             }
         }
     }
