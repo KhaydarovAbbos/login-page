@@ -103,33 +103,6 @@
                     <TextBlock Text="Штрих-код" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
 
-
-                <materialDesign:PackIcon  
-                        Kind="Barcode"
-                        Foreground="Black" 
-                        VerticalAlignment="Center" 
-                    HorizontalAlignment="Center"
-                        Margin="210,00,0,0" 
-                        Width="40" 
-                        MouseUp="PackIcon_MouseUp"
-                        Height="40"
-                    >
-
-                    <materialDesign:PackIcon.Style>
-                        <Style TargetType="materialDesign:PackIcon">
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </materialDesign:PackIcon.Style>
-
-                </materialDesign:PackIcon>
-
-
-
-
             </Grid>
             <TextBlock x:Name="txtErrorBarocde" FontSize="13" Width="200" Foreground="Red"/>
 

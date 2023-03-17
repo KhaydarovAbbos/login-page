@@ -201,19 +201,5 @@ namespace login_page.UI
 
             }
         }
-
-        private void PackIcon_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (txtName.Text != "")
-            {
-                byte[] encoded = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(txtName.Text));
-                var value = BitConverter.ToUInt32(encoded, 0) % 100000;
-                txtBarcode.Text = txtName.Text[0].ToString() + value.ToString();
-            }
-            else
-            {
-                txtName_TextChanged(null, null);
-            }
-        }
     }
 }

@@ -218,19 +218,6 @@ namespace login_page.UI
             }
         }
 
-        private void PackIcon_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (txtName.Text != "")
-            {
-                
-            }
-            else
-            {
-                txtName_TextChanged(null, null);
-            }
-        }
-
-
         private void ckBarcode_Unchecked(object sender, RoutedEventArgs e)
         {
             txtBarcode.Clear();
