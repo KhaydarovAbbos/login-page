@@ -74,23 +74,7 @@ namespace login_page.UI
             targetWindow.SetEffect();
             targetWindow.giff.Visibility = Visibility.Visible;
 
-            if (ckRememberMe.IsChecked == true)
-            {
-                UserSignIn user = new UserSignIn()
-                {
-                    Login = txtLogin.Text,
-                    Password = txtPassword.Password
-                };
-
-                if (userSignIns.FirstOrDefault(x => x.Login == user.Login && x.Password == user.Password) == null)
-                {
-                    using (StreamWriter writer = new StreamWriter(App.FilePath, true))
-                    {
-                        writer.WriteLine(txtLogin.Text + " " + txtPassword.Password);
-                    }
-                }
-
-            }
+            
 
             UserLoginViewModel userLoginViewModel = new UserLoginViewModel()
             {
@@ -106,6 +90,24 @@ namespace login_page.UI
                 targetWindow.AllCloseControls(3);
 
                 txtError.Text = "";
+
+                if (ckRememberMe.IsChecked == true)
+                {
+                    UserSignIn user = new UserSignIn()
+                    {
+                        Login = txtLogin.Text,
+                        Password = txtPassword.Password
+                    };
+
+                    if (userSignIns.FirstOrDefault(x => x.Login == user.Login && x.Password == user.Password) == null)
+                    {
+                        using (StreamWriter writer = new StreamWriter(App.FilePath, true))
+                        {
+                            writer.WriteLine(txtLogin.Text + " " + txtPassword.Password);
+                        }
+                    }
+
+                }
             }
             else if (response.Item1 && !response.Item2)
             {

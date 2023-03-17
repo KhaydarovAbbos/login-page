@@ -67,6 +67,8 @@
                         <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
                     </Border>
 
+                    
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

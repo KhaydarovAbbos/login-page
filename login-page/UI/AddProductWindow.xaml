@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:wm="clr-namespace:login_page.Helper"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:login_page.UI"
         mc:Ignorable="d"
         Title="" Height="550" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
@@ -429,7 +430,6 @@
 
             </Grid>
             <TextBlock x:Name="txtErrorBarocde" FontSize="13" Width="200" Foreground="Red"/>
-
 
 
             <Button x:Name="BtnAdd" 
