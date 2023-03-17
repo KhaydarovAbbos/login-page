@@ -134,8 +134,6 @@
 
 
             </Grid>
-
-
             <TextBlock x:Name="txtErrorBarocde" FontSize="13" Width="200" Foreground="Red"/>
             
             
